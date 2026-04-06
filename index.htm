@@ -33,8 +33,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .btn.pri{background:var(--or);color:#fff;border-color:var(--or)}.btn.pri:hover{background:#d44d1a}
 
 /* SUMMARY */
-.sum{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:13px 22px;background:var(--bg2);border-bottom:1px solid var(--bd)}
-@media(max-width:1300px){.sum{grid-template-columns:repeat(3,1fr)}}
+.sum{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:13px 22px;background:var(--bg2);border-bottom:1px solid var(--bd)}
+@media(max-width:900px){.sum{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.sum{grid-template-columns:repeat(2,1fr)}}
 .sc{background:var(--bg3);border-radius:8px;padding:11px 14px;border:1px solid var(--bd);position:relative;overflow:hidden}
 .sc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c,#333)}
@@ -194,7 +194,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
   <div class="sc sc-pi"><div class="lb">Пайплайн</div><div class="vl cy" id="s-pi">22&nbsp;439&nbsp;616&nbsp;₽</div><div class="sb" id="s-pi-s">26% от плана</div></div>
   <div class="sc sc-al"><div class="lb">Итого (факт + план)</div><div class="vl co" id="s-al">75&nbsp;143&nbsp;324&nbsp;₽</div><div class="sb" id="s-al-s">88% от плана</div></div>
   <div class="sc sc-gp"><div class="lb">До плана / Сверх</div><div class="vl cr" id="s-gp">10&nbsp;356&nbsp;676&nbsp;₽</div><div class="sb" id="s-gp-s">не хватает до плана</div></div>
-  <div class="sc" style="--c:var(--bl)"><div class="lb">Пайплайн взвешенный</div><div class="vl cb" id="s-pw">—</div><div class="sb">с учётом вероятности</div></div>
 </div>
 
 <div class="pgb">
@@ -832,13 +831,9 @@ function dealRow(d, mi, type, di){
   var chk = type==='pipeline'
     ? '<input type="checkbox" '+(inactive?'':'checked')+' title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--t3);opacity:.45;flex-shrink:0" onclick="togglePipe(event,'+mi+','+di+')">'
     : '';
-  var prob = type==='pipeline'
-    ? '<input class="prob-inp" type="number" min="0" max="100" value="'+(d.prob!==undefined?d.prob:50)+'" title="Вероятность %" onclick="event.stopPropagation()" onchange="setProb(event,'+mi+','+di+')" style="'+(inactive?'opacity:.4':'')+'">'
-    : '';
   return '<tr class="dr" draggable="true" data-mi="'+mi+'" data-type="'+type+'" data-di="'+di+'" ondragstart="onDS(event)" ondragend="onDE(event)">'+
     '<td class="nc"><span style="display:flex;align-items:center;gap:4px">'+chk+'<span class="ec" style="'+fade+'" onclick="editM(event,\'name\','+mi+',\''+type+'\','+di+')">'+H(d.name)+'</span></span></td>'+
     '<td class="ac '+ac+'" style="'+fade+'"><span class="ec" onclick="editM(event,\'amt\','+mi+',\''+type+'\','+di+')">'+R(d.amt)+'</span></td>'+
-    (type==='pipeline' ? '<td style="padding:7px 4px 7px 0;text-align:right">'+prob+'</td>' : '')+
     '<td class="dc"><button class="dbtn" onclick="delDeal('+mi+',\''+type+'\','+di+')">✕</button></td>'+
   '</tr>';
 }
@@ -1251,75 +1246,53 @@ function initChart(){
   var canvas = id('myChart'); if(!canvas) return;
   var C = compute();
   var isDark = !document.body.classList.contains('light');
+  var dpr = window.devicePixelRatio || 1;
   var W = canvas.parentElement.clientWidth - 32;
-  var H = 160;
-  canvas.width = W; canvas.height = H;
+  var H = 120;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
   var ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
   ctx.clearRect(0,0,W,H);
 
-  var months = C.map(function(m){ return m.name.substring(0,3); });
-  var planV  = C.map(function(m){ return m.plan; });
-  var confV  = C.map(function(m){ return m.sc; });
-  var pipeV  = C.map(function(m){ return m.sp; });
-  var n = months.length;
-  var maxV = Math.max.apply(null, planV.concat(confV.map(function(c,i){return c+pipeV[i];})));
-  maxV = Math.ceil(maxV/5000000)*5000000 || 1;
+  var n = C.length;
+  var tc = isDark ? '#8b93b8' : '#4a5180';
+  var padL=8, padR=8, padT=16, padB=22;
+  var cW=W-padL-padR, cH=H-padT-padB;
+  var bW=Math.floor(cW/n*0.65);
+  var gap=cW/n;
 
-  var padL=42, padR=10, padT=10, padB=30;
-  var cW = W-padL-padR, cH = H-padT-padB;
-  var bW = Math.floor(cW/n*0.6), gap = cW/n;
-
-  var bg  = isDark?'rgba(255,255,255,.06)':'rgba(0,0,0,.06)';
-  var tc  = isDark?'#8b93b8':'#4a5180';
-
-  // Сетка
-  ctx.strokeStyle=bg; ctx.lineWidth=1;
-  for(var g=0;g<=4;g++){
-    var gy = padT + cH*(1-g/4);
-    ctx.beginPath(); ctx.moveTo(padL,gy); ctx.lineTo(W-padR,gy); ctx.stroke();
-    ctx.fillStyle=tc; ctx.font='10px Inter,sans-serif'; ctx.textAlign='right';
-    ctx.fillText(Math.round(maxV*g/4/1000000)+'M', padL-4, gy+3);
-  }
-
-  // Столбики
   C.forEach(function(m,i){
+    var done = (m.sc + m.sp) >= m.need;
+    var pct  = Math.min(1, (m.sc+m.sp) / (m.need||1));
+    var barH = Math.max(4, Math.round(cH * pct));
     var x = padL + gap*i + gap/2 - bW/2;
-    var hC = cH*(m.sc/maxV);
-    var hP = cH*(m.sp/maxV);
-    // пайплайн поверх
-    ctx.fillStyle='rgba(245,158,11,.55)';
-    ctx.fillRect(x, padT+cH-hC-hP, bW, hP);
-    // подтверждено
-    ctx.fillStyle='rgba(34,197,94,.75)';
-    ctx.fillRect(x, padT+cH-hC, bW, hC);
-    // подпись месяца
-    ctx.fillStyle=tc; ctx.font='10px Inter,sans-serif'; ctx.textAlign='center';
-    ctx.fillText(months[i], padL+gap*i+gap/2, H-8);
-  });
-
-  // Линия плана
-  ctx.strokeStyle='#3b82f6'; ctx.lineWidth=2;
-  ctx.beginPath();
-  C.forEach(function(m,i){
-    var x = padL+gap*i+gap/2;
-    var y = padT+cH*(1-m.plan/maxV);
-    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
-  });
-  ctx.stroke();
-  // Точки
-  ctx.fillStyle='#3b82f6';
-  C.forEach(function(m,i){
-    var x=padL+gap*i+gap/2, y=padT+cH*(1-m.plan/maxV);
-    ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fill();
-  });
-
-  // Легенда
-  var lx=padL, ly=padT-2;
-  [['— План','#3b82f6'],['■ Подтверждено','rgba(34,197,94,.9)'],['■ Пайплайн','rgba(245,158,11,.8)']].forEach(function(l){
-    ctx.fillStyle=l[1]; ctx.font='10px Inter,sans-serif'; ctx.textAlign='left';
-    ctx.fillText(l[0], lx, ly+10); lx+=ctx.measureText(l[0]).width+16;
+    var y = padT + cH - barH;
+    // Фон (план)
+    ctx.fillStyle = isDark ? 'rgba(255,255,255,.06)' : 'rgba(0,0,0,.06)';
+    ctx.beginPath();
+    ctx.roundRect ? ctx.roundRect(x, padT, bW, cH, 4) : ctx.rect(x, padT, bW, cH);
+    ctx.fill();
+    // Факт
+    ctx.fillStyle = done ? 'rgba(34,197,94,.85)' : 'rgba(239,68,68,.75)';
+    ctx.beginPath();
+    ctx.roundRect ? ctx.roundRect(x, y, bW, barH, [0,0,4,4]) : ctx.rect(x, y, bW, barH);
+    ctx.fill();
+    // Подпись %
+    var pctLabel = Math.round(pct*100)+'%';
+    ctx.fillStyle = done ? '#4ade80' : '#f87171';
+    ctx.font = 'bold 9px Inter,sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(pctLabel, padL+gap*i+gap/2, y-3);
+    // Подпись месяца
+    ctx.fillStyle = tc;
+    ctx.font = '10px Inter,sans-serif';
+    ctx.fillText(m.name.substring(0,3), padL+gap*i+gap/2, H-6);
   });
 }
+
 function toggleChart(){
   var w=id('chart-wrap'),b=id('btn-chart-toggle');
   var hidden=w.style.display==='none';
@@ -1331,24 +1304,33 @@ function toggleChart(){
 function showHelp(){
   var m=document.createElement('div');
   m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
-  m.innerHTML='<div style="background:var(--bg2);border-radius:12px;border:1px solid var(--bd);padding:24px;width:480px;max-width:94vw;max-height:85vh;overflow-y:auto;color:var(--t1)">'+
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">'+
-      '<div style="font-size:16px;font-weight:800">Как пользоваться</div>'+
-      '<button onclick="this.closest('div[style*=fixed]').remove()" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:20px;line-height:1">✕</button>'+
-    '</div>'+
-    '<div style="display:flex;flex-direction:column;gap:11px;font-size:13px;line-height:1.6">'+
-      '<div><b>✏ Редактирование</b> — клик по имени или сумме сделки → Enter для сохранения</div>'+
-      '<div><b>☰ Перенос между месяцами</b> — перетащи строку на другую карточку</div>'+
-      '<div><b>🔄 Смена типа</b> — перетащи сделку и брось на ту же карточку → переключится из подтверждённой в пайплайн и обратно</div>'+
-      '<div><b>☑ Чекбокс</b> — исключить рисковую сделку из расчёта без удаления</div>'+
-      '<div><b>% Вероятность</b> — поле рядом с суммой пайплайна. Влияет на карточку «Пайплайн взвешенный»</div>'+
-      '<div><b>↑ Оранжевый бейдж</b> — профит с предыдущего месяца</div>'+
-      '<div><b>⊟ Компакт</b> — только заголовки месяцев без деталей</div>'+
-      '<div><b>💾 Сохранить</b> — записывает данные в Google Drive</div>'+
-      '<div><b>🌙/🌞</b> — тёмная/светлая тема</div>'+
-    '</div></div>';
+  var box=document.createElement('div');
+  box.style.cssText='background:var(--bg2);border-radius:12px;border:1px solid var(--bd);padding:24px;width:480px;max-width:94vw;max-height:85vh;overflow-y:auto;color:var(--t1)';
+  var items=[
+    ['✏ Редактирование','Клик по имени или сумме сделки → Enter для сохранения'],
+    ['☰ Перенос между месяцами','Перетащи строку на другую карточку месяца'],
+    ['🔄 Смена типа','Перетащи сделку на ту же карточку — переключится из подтверждённой в пайплайн и обратно'],
+    ['☑ Чекбокс','Исключить рисковую сделку из расчёта без удаления'],
+    ['% Вероятность','Поле рядом с суммой пайплайна. Влияет на карточку Пайплайн взвешенный'],
+    ['↑ Оранжевый бейдж','Профит с предыдущего месяца, уменьшает план следующего'],
+    ['⊟ Компакт','Только заголовки месяцев без деталей'],
+    ['💾 Сохранить','Записывает данные в Google Drive, доступно с любого устройства'],
+    ['🌙/🌞','Переключение тёмной/светлой темы']
+  ];
+  var html2='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">'+
+    '<div style="font-size:16px;font-weight:800">Как пользоваться</div>'+
+    '<button id="help-close" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:20px;line-height:1">✕</button>'+
+    '</div><div style="display:flex;flex-direction:column;gap:11px;font-size:13px;line-height:1.6">';
+  items.forEach(function(it){
+    html2+='<div><b>'+it[0]+'</b> — '+it[1]+'</div>';
+  });
+  html2+='</div>';
+  box.innerHTML=html2;
+  m.appendChild(box);
   m.addEventListener('click',function(e){if(e.target===m)m.remove();});
   document.body.appendChild(m);
+  var cl=document.getElementById('help-close');
+  if(cl) cl.addEventListener('click',function(){m.remove();});
 }
 
 // ─── INIT ────────────────────────────────────────────────────────
