@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>План продаж 2026 — Егоров</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://apis.google.com/js/api.js" async defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0f1a;--bg2:#131621;--bg3:#1a1e2e;--bg4:#222638;--bg5:#2a2f45;
+  --or:#f05a23;--gr:#22c55e;--rd:#ef4444;--yw:#f59e0b;--bl:#3b82f6;
+  --t1:#e8eaf6;--t2:#8b93b8;--t3:#4a5180;
+  --bd:rgba(255,255,255,0.06);--rad:10px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-size:14px}
+
+/* TOP PANEL — sticky */
+.top{position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.hdr{background:var(--bg2);border-bottom:2px solid var(--or);padding:11px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.hdr-l .meta{font-size:10px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.hdr-l .title{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.hdr-l .title span{color:var(--or)}
+.hdr-r{display:flex;gap:6px;flex-wrap:wrap}
+.btn{font-family:inherit;font-size:11px;font-weight:700;padding:6px 13px;border-radius:6px;cursor:pointer;border:1px solid var(--bd);background:var(--bg4);color:var(--t2);text-transform:uppercase;letter-spacing:.05em;transition:all .18s}
+.btn:hover{background:var(--bg5);color:var(--t1);border-color:rgba(255,255,255,.15)}
+.btn.pri{background:var(--or);color:#fff;border-color:var(--or)}.btn.pri:hover{background:#d44d1a}
+
+/* SUMMARY */
+.sum{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:13px 22px;background:var(--bg2);border-bottom:1px solid var(--bd)}
+@media(max-width:900px){.sum{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.sum{grid-template-columns:repeat(2,1fr)}}
+.sc{background:var(--bg3);border-radius:8px;padding:11px 14px;border:1px solid var(--bd);position:relative;overflow:hidden}
+.sc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c,#333)}
+.sc-pl{--c:var(--bl)}.sc-co{--c:var(--gr)}.sc-pi{--c:var(--yw)}.sc-al{--c:var(--or)}.sc-gp{--c:var(--rd)}
+.sc .lb{font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.sc .vl{font-size:16px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.sc .sb{font-size:10px;color:var(--t3);margin-top:3px}
+.cg{color:var(--gr)}.cr{color:var(--rd)}.co{color:var(--or)}.cb{color:var(--bl)}.cy{color:var(--yw)}
+
+/* PROGRESS */
+.pgb{padding:9px 22px;background:var(--bg2);border-bottom:1px solid var(--bd)}
+.pgt{display:flex;justify-content:space-between;font-size:11px;color:var(--t2);margin-bottom:5px}
+.pgt{display:flex;justify-content:space-between;font-size:11px;color:var(--t2);margin-bottom:5px}
+.pgtr{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden;display:flex}
+.pgc{background:var(--gr);transition:width .4s}.pgp{background:var(--yw);opacity:.75;transition:width .4s}
+
+/* LEGEND */
+.leg{padding:7px 22px;background:var(--bg2);border-bottom:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t3)}
+.ld{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.lh{margin-left:auto;font-size:10px;color:var(--t3)}
+
+/* MAIN */
+.main{padding:18px 22px;display:flex;flex-direction:column;gap:20px}
+.stl{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:11px;display:flex;align-items:center;gap:10px}
+.stl::after{content:'';flex:1;height:1px;background:var(--bd)}
+
+/* MONTHS GRID */
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+@media(max-width:1100px){.mg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.mg{grid-template-columns:1fr}}
+
+/* MONTH CARD */
+.mc{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rad);overflow:hidden;transition:border-color .2s}
+.mc.ov{border-color:rgba(34,197,94,.25)}.mc.un{border-color:rgba(239,68,68,.18)}
+.mc.dov{border-color:var(--or)!important;box-shadow:0 0 0 2px rgba(240,90,35,.18)!important}
+
+.mch{padding:11px 13px;border-bottom:1px solid var(--bd);cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
+.mcn{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.mcp{font-size:10px;color:var(--t3);margin-top:2px}
+.mcb{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;line-height:1.5}
+.bov{background:rgba(34,197,94,.15);color:#4ade80}
+.bun{background:rgba(239,68,68,.15);color:#f87171}
+.bca{background:rgba(240,90,35,.15);color:#fb923c}
+.chv{width:13px;height:13px;transition:transform .2s;opacity:.4;flex-shrink:0;margin-top:2px}
+.chv.op{transform:rotate(180deg)}
+
+.mpr{height:3px;background:var(--bg4);display:flex}
+.mprc{background:var(--gr);transition:width .3s}.mprp{background:var(--yw);opacity:.7;transition:width .3s}
+
+.mcbd{}.mcbd.cl{display:none}
+
+/* DEALS TABLE */
+.dt{width:100%;border-collapse:collapse}
+.dt .sh td{background:var(--bg3);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);padding:5px 13px}
+.dt .dr{border-bottom:1px solid var(--bd);cursor:grab;transition:background .15s}
+.dt .dr:last-child{border-bottom:none}
+.dt .dr:hover{background:rgba(255,255,255,.025)}
+.dt .dr.dg{opacity:.35;background:rgba(240,90,35,.08)}
+.dt .dr td{padding:7px 13px;font-size:12px;vertical-align:middle}
+.dt .dr .nc{width:55%}
+.dt .dr .ac{text-align:right;font-weight:600;white-space:nowrap}
+.dt .dr .dc{width:22px;text-align:center}
+.dt .dr .dc button{opacity:0;transition:opacity .15s}
+.dt .dr:hover .dc button{opacity:1}
+.amc{color:var(--gr)}.amp{color:var(--yw)}
+.dbtn{background:none;border:none;color:var(--rd);cursor:pointer;font-size:13px;padding:1px 4px;font-family:inherit}
+.er td{padding:10px 13px;font-size:11px;color:var(--t3);text-align:center}
+
+/* EDITABLE */
+.ec{border-radius:3px;padding:1px 4px;cursor:text;transition:background .15s;display:inline-block;min-width:30px}
+.ec:hover{background:rgba(255,255,255,.07)}
+.ec.act{background:rgba(59,130,246,.15);outline:1px solid var(--bl)}
+.ec input{background:transparent;border:none;outline:none;color:inherit;font:inherit;width:100%;padding:0;min-width:60px}
+
+/* ADD BUTTONS */
+.mca{padding:6px 13px 8px;display:flex;gap:6px}
+.abtn{flex:1;background:none;border:1px dashed var(--bd);color:var(--t3);font-size:11px;font-weight:600;padding:5px 8px;border-radius:5px;cursor:pointer;transition:all .18s;font-family:inherit}
+.abtn:hover{border-color:var(--or);color:var(--or)}.abtn.pp:hover{border-color:var(--yw);color:var(--yw)}
+
+/* MONTH TOTALS */
+.mct{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--bd);background:var(--bg3)}
+.mctc{padding:8px 13px}
+.mctc .tl{font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.mctc .tv{font-size:13px;font-weight:800}
+.mctc:nth-child(2){border-left:1px solid var(--bd);border-right:1px solid var(--bd)}
+
+/* P27 */
+.p27{background:var(--bg2);border-radius:var(--rad);border:1px solid var(--bd);transition:border-color .2s}
+.p27.dov{border-color:rgba(245,158,11,.5)!important;box-shadow:0 0 0 2px rgba(245,158,11,.12)}
+.p27h{padding:13px 17px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
+.p27t{width:100%;border-collapse:collapse}
+.p27t th{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);padding:8px 15px;border-bottom:1px solid var(--bd);text-align:left}
+.p27t td{padding:8px 15px;font-size:12px;border-bottom:1px solid var(--bd);vertical-align:middle}
+.p27t tr:last-child td{border-bottom:none}
+.p27t tr:hover td{background:rgba(255,255,255,.018)}
+.p27t .pn{font-weight:500;color:var(--t2);width:28%}
+.p27t .pa{text-align:right;font-weight:600;color:var(--yw);white-space:nowrap;width:130px}
+.p27t .pno{font-size:11px;color:var(--t3)}
+.p27t .pd{width:22px;text-align:center}
+.p27t .pd button{opacity:0;transition:opacity .15s}
+.p27t tr:hover .pd button{opacity:1}
+.p27t tr.dr{cursor:grab}
+.p27t tr.dr.dg{opacity:.35}
+.p27tot td{background:var(--bg3)!important;font-weight:700}
+.p27tot .pa{color:var(--or)!important}
+.p27a{padding:10px 15px}
+
+/* MODAL */
+.mdbg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.mdbg.hid{display:none}
+.mdbox{background:var(--bg3);border-radius:12px;border:1px solid rgba(255,255,255,.1);padding:22px;width:340px;max-width:94vw}
+.mdbox h3{font-size:15px;font-weight:800;margin-bottom:15px}
+.mdf{margin-bottom:10px}
+.mdf label{display:block;font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.mdf input,.mdf select{width:100%;background:var(--bg4);border:1px solid var(--bd);color:var(--t1);padding:8px 11px;border-radius:6px;font-family:inherit;font-size:13px;outline:none;transition:border-color .18s}
+.mdf input:focus,.mdf select:focus{border-color:var(--bl)}
+.mdf select option{background:var(--bg4)}
+.mdbts{display:flex;gap:8px;margin-top:15px}
+.mdbts .btn{flex:1;padding:9px;font-size:12px}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--bg3);border:1px solid rgba(255,255,255,.12);color:var(--t1);padding:9px 18px;border-radius:7px;font-size:12px;font-weight:600;z-index:999;transition:transform .28s;pointer-events:none;white-space:nowrap}
+.toast.on{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="top">
+<div class="hdr">
+  <div class="hdr-l">
+    <div class="meta">LANSOFT · Менеджер по продажам</div>
+    <div class="title">План продаж <span>2026</span> — Егоров И.</div>
+  </div>
+  <div class="hdr-r">
+    <button class="btn" onclick="expandAll()">Развернуть</button>
+    <button class="btn" onclick="collapseAll()">Свернуть</button>
+    <button class="btn" onclick="doReset()">↺ Сброс</button>
+    <button class="btn pri" onclick="doSave()">💾 Сохранить</button>
+    <button class="btn" id="btn-login" onclick="signIn()" style="background:var(--bg4);border-color:rgba(255,255,255,.2)">🔑 Войти</button>
+    <span id="save-status" style="font-size:11px;font-weight:600;color:var(--t3);padding:0 4px"></span>
+  </div>
+</div>
+
+<div class="sum">
+  <div class="sc sc-pl"><div class="lb">Годовой план</div><div class="vl cb" id="s-pl">85&nbsp;500&nbsp;000&nbsp;₽</div><div class="sb">85 500 000 ₽</div></div>
+  <div class="sc sc-co"><div class="lb">Подтверждено</div><div class="vl cg" id="s-co">52&nbsp;703&nbsp;708&nbsp;₽</div><div class="sb" id="s-co-s">62% от плана</div></div>
+  <div class="sc sc-pi"><div class="lb">Пайплайн</div><div class="vl cy" id="s-pi">22&nbsp;439&nbsp;616&nbsp;₽</div><div class="sb" id="s-pi-s">26% от плана</div></div>
+  <div class="sc sc-al"><div class="lb">Итого (факт + план)</div><div class="vl co" id="s-al">75&nbsp;143&nbsp;324&nbsp;₽</div><div class="sb" id="s-al-s">88% от плана</div></div>
+  <div class="sc sc-gp"><div class="lb">До плана / Сверх</div><div class="vl cr" id="s-gp">10&nbsp;356&nbsp;676&nbsp;₽</div><div class="sb" id="s-gp-s">не хватает до плана</div></div>
+</div>
+
+<div class="pgb">
+  <div class="pgt"><span>Выполнение годового плана</span><span id="pg-pct">88%</span></div>
+  <div class="pgtr"><div class="pgc" id="pg-c" style="width: 61.6418%;"></div><div class="pgp" id="pg-p" style="width: 26.2452%;"></div></div>
+</div>
+
+<div class="leg">
+  <div class="li"><div class="ld" style="background:var(--gr)"></div>Подтверждённые</div>
+  <div class="li"><div class="ld" style="background:var(--yw)"></div>Пайплайн</div>
+  <div class="li"><div class="ld" style="background:var(--or)"></div>Профит → переходит в следующий месяц</div>
+  <div class="li"><div class="ld" style="background:var(--rd)"></div>Недовыполнение</div>
+  <div class="lh">✏ Клик по имени/сумме — редактировать &nbsp;|&nbsp; ☰ Перетащить — сменить месяц &nbsp;|&nbsp; ☑ Чекбокс пайплайна — включить/исключить из расчёта</div>
+</div>
+</div><!-- /top -->
+
+<div class="main">
+  <div>
+    <div class="stl">Помесячный план</div>
+    <div class="mg" id="mgrid"><div class="mc" id="card-jan" data-mi="0"><div class="mch" onclick="toggleM('jan')"><div><div class="mcn">Январь</div><div class="mcp">план 3&nbsp;701&nbsp;024&nbsp;₽</div></div><div class="mcb"><span class="badge bun">−1&nbsp;077&nbsp;701&nbsp;₽</span><svg class="chv op" id="chv-jan" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:70.88099962875674%"></div><div class="mprp" style="width:0%"></div></div><div class="mcbd " id="bd-jan"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="0" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',0,'confirmed',0)">Римборсо</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',0,'confirmed',0)">2&nbsp;623&nbsp;323&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(0,'confirmed',0)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(0,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(0,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">2&nbsp;623&nbsp;323&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">—</div></div><div class="mctc" style="text-align:right"><div class="tl">Не хватает</div><div class="tv" style="color:var(--rd)">1&nbsp;077&nbsp;701&nbsp;₽</div></div></div></div></div><div class="mc un" id="card-feb" data-mi="1"><div class="mch" onclick="toggleM('feb')"><div><div class="mcn">Февраль</div><div class="mcp">план 4&nbsp;349&nbsp;018&nbsp;₽</div></div><div class="mcb"><span class="badge bun">−3&nbsp;279&nbsp;039&nbsp;₽</span><svg class="chv op" id="chv-feb" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:24.602770706156456%"></div><div class="mprp" style="width:0%"></div></div><div class="mcbd " id="bd-feb"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="1" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',1,'confirmed',0)">OCT Clinical</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',1,'confirmed',0)">393&nbsp;478&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(1,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="1" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',1,'confirmed',1)">Банда Умников</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',1,'confirmed',1)">163&nbsp;765&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(1,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="1" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',1,'confirmed',2)">ZTM Logistic (1-й пл.)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',1,'confirmed',2)">360&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(1,'confirmed',2)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="1" data-type="confirmed" data-di="3" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',1,'confirmed',3)">Фронтмед</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',1,'confirmed',3)">152&nbsp;736&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(1,'confirmed',3)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(1,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(1,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">1&nbsp;069&nbsp;979&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">—</div></div><div class="mctc" style="text-align:right"><div class="tl">Не хватает</div><div class="tv" style="color:var(--rd)">3&nbsp;279&nbsp;039&nbsp;₽</div></div></div></div></div><div class="mc un" id="card-mar" data-mi="2"><div class="mch" onclick="toggleM('mar')"><div><div class="mcn">Март</div><div class="mcp">план 7&nbsp;130&nbsp;823&nbsp;₽</div></div><div class="mcb"><span class="badge bun">−5&nbsp;994&nbsp;050&nbsp;₽</span><svg class="chv op" id="chv-mar" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:15.941682465777053%"></div><div class="mprp" style="width:0%"></div></div><div class="mcbd " id="bd-mar"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="2" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',2,'confirmed',0)">Смарткард (продление)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',2,'confirmed',0)">110&nbsp;880&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(2,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="2" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',2,'confirmed',1)">Русская рыбная компания</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',2,'confirmed',1)">873&nbsp;157&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(2,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="2" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',2,'confirmed',2)">Фронтмед</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',2,'confirmed',2)">152&nbsp;736&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(2,'confirmed',2)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(2,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(2,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">1&nbsp;136&nbsp;773&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">—</div></div><div class="mctc" style="text-align:right"><div class="tl">Не хватает</div><div class="tv" style="color:var(--rd)">5&nbsp;994&nbsp;050&nbsp;₽</div></div></div></div></div><div class="mc un" id="card-apr" data-mi="3"><div class="mch" onclick="toggleM('apr')"><div><div class="mcn">Апрель</div><div class="mcp">план 6&nbsp;601&nbsp;949&nbsp;₽</div></div><div class="mcb"><span class="badge bun">−4&nbsp;227&nbsp;019&nbsp;₽</span><svg class="chv op" id="chv-apr" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:32.18640420191187%"></div><div class="mprp" style="width:3.786760528807051%"></div></div><div class="mcbd " id="bd-apr"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="3" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',3,'confirmed',0)">Штрих Ру</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',3,'confirmed',0)">762&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(3,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="3" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',3,'confirmed',1)">Союз-22, MVP</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',3,'confirmed',1)">362&nbsp;930&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(3,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="3" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',3,'confirmed',2)">Смарткард (апсел)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',3,'confirmed',2)">1&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(3,'confirmed',2)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="3" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,3,0)"><span class="ec" style="" onclick="editM(event,'name',3,'pipeline',0)">Столица СЗ</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',3,'pipeline',0)">250&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(3,'pipeline',0)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(3,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(3,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">2&nbsp;124&nbsp;930&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">250&nbsp;000&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Не хватает</div><div class="tv" style="color:var(--rd)">4&nbsp;227&nbsp;019&nbsp;₽</div></div></div></div></div><div class="mc" id="card-may" data-mi="4"><div class="mch" onclick="toggleM('may')"><div><div class="mcn">Май</div><div class="mcp">план 5&nbsp;848&nbsp;700&nbsp;₽</div></div><div class="mcb"><span class="badge bun">−463&nbsp;700&nbsp;₽</span><svg class="chv op" id="chv-may" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:83.52283242041139%"></div><div class="mprp" style="width:8.548908129008332%"></div></div><div class="mcbd " id="bd-may"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="4" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',4,'confirmed',0)">Боржоми (продажи)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',4,'confirmed',0)">3&nbsp;485&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(4,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="4" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',4,'confirmed',1)">Веддинг (1-я оплата)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',4,'confirmed',1)">600&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(4,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="4" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',4,'confirmed',2)">Регионы</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',4,'confirmed',2)">800&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(4,'confirmed',2)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="4" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,4,0)"><span class="ec" style="" onclick="editM(event,'name',4,'pipeline',0)">Музей</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',4,'pipeline',0)">500&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(4,'pipeline',0)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(4,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(4,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">4&nbsp;885&nbsp;000&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">500&nbsp;000&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Не хватает</div><div class="tv" style="color:var(--rd)">463&nbsp;700&nbsp;₽</div></div></div></div></div><div class="mc ov" id="card-jun" data-mi="5"><div class="mch" onclick="toggleM('jun')"><div><div class="mcn">Июнь</div><div class="mcp">план 6&nbsp;618&nbsp;385&nbsp;₽</div></div><div class="mcb"><span class="badge bov">+4&nbsp;517&nbsp;688&nbsp;₽</span><svg class="chv op" id="chv-jun" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:100%"></div><div class="mprp" style="width:0%"></div></div><div class="mcbd " id="bd-jun"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="5" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',5,'confirmed',0)">Промтекстиль</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',5,'confirmed',0)">349&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="5" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',5,'confirmed',1)">Агротерра</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',5,'confirmed',1)">1&nbsp;889&nbsp;609&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="5" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',5,'confirmed',2)">Евроэксперт</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',5,'confirmed',2)">362&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'confirmed',2)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="5" data-type="confirmed" data-di="3" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',5,'confirmed',3)">MR Group (апсел)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',5,'confirmed',3)">1&nbsp;135&nbsp;464&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'confirmed',3)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="5" data-type="confirmed" data-di="4" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',5,'confirmed',4)">Веддинг (2-я оплата)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',5,'confirmed',4)">600&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'confirmed',4)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="5" data-type="confirmed" data-di="5" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',5,'confirmed',5)">Мерц</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',5,'confirmed',5)">6&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'confirmed',5)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="5" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,5,0)"><span class="ec" style="" onclick="editM(event,'name',5,'pipeline',0)">Васта отель</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',5,'pipeline',0)">500&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'pipeline',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="5" data-type="pipeline" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,5,1)"><span class="ec" style="" onclick="editM(event,'name',5,'pipeline',1)">Open Group (MVP)</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',5,'pipeline',1)">300&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(5,'pipeline',1)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(5,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(5,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">10&nbsp;336&nbsp;073&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">800&nbsp;000&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Профит</div><div class="tv" style="color:var(--gr)">+4&nbsp;517&nbsp;688&nbsp;₽</div></div></div></div></div><div class="mc ov" id="card-jul" data-mi="6"><div class="mch" onclick="toggleM('jul')"><div><div class="mcn">Июль</div><div class="mcp">план 6&nbsp;085&nbsp;168&nbsp;₽</div></div><div class="mcb"><span class="badge bca" title="Профит с прошлого месяца">+4&nbsp;517&nbsp;688&nbsp;₽</span><span class="badge bov">+227&nbsp;520&nbsp;₽</span><svg class="chv op" id="chv-jul" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:100%"></div><div class="mprp" style="width:0%"></div></div><div class="mcbd " id="bd-jul"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="6" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',6,'confirmed',0)">Аренадата</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',6,'confirmed',0)">1&nbsp;500&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(6,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="6" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',6,'confirmed',1)">Радио Юнистар</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',6,'confirmed',1)">295&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(6,'confirmed',1)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="6" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,6,0)"><span class="ec" style="opacity:.4;text-decoration:line-through" onclick="editM(event,'name',6,'pipeline',0)">Хеликс (продажи)</span></span></td><td class="ac amp" style="opacity:.4;text-decoration:line-through"><span class="ec" onclick="editM(event,'amt',6,'pipeline',0)">1&nbsp;200&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(6,'pipeline',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="6" data-type="pipeline" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,6,1)"><span class="ec" style="opacity:.4;text-decoration:line-through" onclick="editM(event,'name',6,'pipeline',1)">Хеликс (ОСС)</span></span></td><td class="ac amp" style="opacity:.4;text-decoration:line-through"><span class="ec" onclick="editM(event,'amt',6,'pipeline',1)">300&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(6,'pipeline',1)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(6,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(6,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">1&nbsp;795&nbsp;000&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">—</div></div><div class="mctc" style="text-align:right"><div class="tl">Профит</div><div class="tv" style="color:var(--gr)">+227&nbsp;520&nbsp;₽</div></div></div></div></div><div class="mc" id="card-aug" data-mi="7"><div class="mch" onclick="toggleM('aug')"><div><div class="mcn">Август</div><div class="mcp">план 6&nbsp;647&nbsp;439&nbsp;₽</div></div><div class="mcb"><span class="badge bca" title="Профит с прошлого месяца">+227&nbsp;520&nbsp;₽</span><span class="badge bun">−742&nbsp;079&nbsp;₽</span><svg class="chv op" id="chv-aug" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:28.69194962430104%"></div><div class="mprp" style="width:59.74903802762155%"></div></div><div class="mcbd " id="bd-aug"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="7" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',7,'confirmed',0)">Нордкор</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',7,'confirmed',0)">470&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="7" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',7,'confirmed',1)">Кеминс</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',7,'confirmed',1)">452&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="7" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',7,'confirmed',2)">МодернВэй</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',7,'confirmed',2)">150&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'confirmed',2)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="7" data-type="confirmed" data-di="3" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',7,'confirmed',3)">Электрострой</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',7,'confirmed',3)">190&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'confirmed',3)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="7" data-type="confirmed" data-di="4" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',7,'confirmed',4)">Embedika</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',7,'confirmed',4)">220&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'confirmed',4)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="7" data-type="confirmed" data-di="5" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',7,'confirmed',5)">ZTM Logistic (2-й пл.)</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',7,'confirmed',5)">360&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'confirmed',5)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="7" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,7,0)"><span class="ec" style="" onclick="editM(event,'name',7,'pipeline',0)">Барьер (продажи)</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',7,'pipeline',0)">2&nbsp;535&nbsp;840&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'pipeline',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="7" data-type="pipeline" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,7,1)"><span class="ec" style="" onclick="editM(event,'name',7,'pipeline',1)">Союз-22 (апсел)</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',7,'pipeline',1)">1&nbsp;300&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(7,'pipeline',1)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(7,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(7,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">1&nbsp;842&nbsp;000&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">3&nbsp;835&nbsp;840&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Не хватает</div><div class="tv" style="color:var(--rd)">742&nbsp;079&nbsp;₽</div></div></div></div></div><div class="mc ov" id="card-sep" data-mi="8"><div class="mch" onclick="toggleM('sep')"><div><div class="mcn">Сентябрь</div><div class="mcp">план 5&nbsp;677&nbsp;864&nbsp;₽</div></div><div class="mcb"><span class="badge bov">+32&nbsp;136&nbsp;₽</span><svg class="chv op" id="chv-sep" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:12.504701745841116%"></div><div class="mprp" style="width:87.49529825415888%"></div></div><div class="mcbd " id="bd-sep"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="8" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',8,'confirmed',0)">Бауш энд Ломб</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',8,'confirmed',0)">310&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(8,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="8" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',8,'confirmed',1)">Химпром</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',8,'confirmed',1)">400&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(8,'confirmed',1)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="8" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,8,0)"><span class="ec" style="" onclick="editM(event,'name',8,'pipeline',0)">Аэроклуб (чаты)</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',8,'pipeline',0)">3&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(8,'pipeline',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="8" data-type="pipeline" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,8,1)"><span class="ec" style="" onclick="editM(event,'name',8,'pipeline',1)">МИРЭА</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',8,'pipeline',1)">2&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(8,'pipeline',1)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(8,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(8,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">710&nbsp;000&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">5&nbsp;000&nbsp;000&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Профит</div><div class="tv" style="color:var(--gr)">+32&nbsp;136&nbsp;₽</div></div></div></div></div><div class="mc" id="card-oct" data-mi="9"><div class="mch" onclick="toggleM('oct')"><div><div class="mcn">Октябрь</div><div class="mcp">план 4&nbsp;404&nbsp;105&nbsp;₽</div></div><div class="mcb"><span class="badge bca" title="Профит с прошлого месяца">+32&nbsp;136&nbsp;₽</span><span class="badge bun">−616&nbsp;969&nbsp;₽</span><svg class="chv op" id="chv-oct" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:17.26910744739385%"></div><div class="mprp" style="width:68.61896998964443%"></div></div><div class="mcbd " id="bd-oct"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="9" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',9,'confirmed',0)">Столица СЗ</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',9,'confirmed',0)">650&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(9,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="9" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',9,'confirmed',1)">Индримс</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',9,'confirmed',1)">105&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(9,'confirmed',1)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="9" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,9,0)"><span class="ec" style="" onclick="editM(event,'name',9,'pipeline',0)">RX Code</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',9,'pipeline',0)">3&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(9,'pipeline',0)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(9,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(9,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">755&nbsp;000&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">3&nbsp;000&nbsp;000&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Не хватает</div><div class="tv" style="color:var(--rd)">616&nbsp;969&nbsp;₽</div></div></div></div></div><div class="mc ov" id="card-nov" data-mi="10"><div class="mch" onclick="toggleM('nov')"><div><div class="mcn">Ноябрь</div><div class="mcp">план 8&nbsp;284&nbsp;095&nbsp;₽</div></div><div class="mcb"><span class="badge bov">+20&nbsp;038&nbsp;535&nbsp;₽</span><svg class="chv op" id="chv-nov" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:100%"></div><div class="mprp" style="width:0%"></div></div><div class="mcbd " id="bd-nov"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="10" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',10,'confirmed',0)">Биокодекс</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',10,'confirmed',0)">9&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(10,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="10" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',10,'confirmed',1)">Haleon</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',10,'confirmed',1)">358&nbsp;630&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(10,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="10" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',10,'confirmed',2)">Байер</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',10,'confirmed',2)">8&nbsp;764&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(10,'confirmed',2)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="10" data-type="confirmed" data-di="3" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',10,'confirmed',3)">Аэроклуб</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',10,'confirmed',3)">6&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(10,'confirmed',3)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="10" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,10,0)"><span class="ec" style="" onclick="editM(event,'name',10,'pipeline',0)">Римборсо (апсел)</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',10,'pipeline',0)">1&nbsp;500&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(10,'pipeline',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="10" data-type="pipeline" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,10,1)"><span class="ec" style="" onclick="editM(event,'name',10,'pipeline',1)">БХК</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',10,'pipeline',1)">1&nbsp;200&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(10,'pipeline',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="10" data-type="pipeline" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,10,2)"><span class="ec" style="" onclick="editM(event,'name',10,'pipeline',2)">Open Group (prod)</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',10,'pipeline',2)">1&nbsp;500&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(10,'pipeline',2)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(10,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(10,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">24&nbsp;122&nbsp;630&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">4&nbsp;200&nbsp;000&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Профит</div><div class="tv" style="color:var(--gr)">+20&nbsp;038&nbsp;535&nbsp;₽</div></div></div></div></div><div class="mc ov" id="card-dec" data-mi="11"><div class="mch" onclick="toggleM('dec')"><div><div class="mcn">Декабрь</div><div class="mcp">план 20&nbsp;151&nbsp;429&nbsp;₽</div></div><div class="mcb"><span class="badge bca" title="Профит с прошлого месяца">+20&nbsp;038&nbsp;535&nbsp;₽</span><span class="badge bov">+6&nbsp;043&nbsp;882&nbsp;₽</span><svg class="chv op" id="chv-dec" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div></div><div class="mpr"><div class="mprc" style="width:100%"></div><div class="mprp" style="width:0%"></div></div><div class="mcbd " id="bd-dec"><table class="dt"><tbody><tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr><tr class="dr" draggable="true" data-mi="11" data-type="confirmed" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',11,'confirmed',0)">Gefco</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',11,'confirmed',0)">981&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(11,'confirmed',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="11" data-type="confirmed" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',11,'confirmed',1)">Бионова</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',11,'confirmed',1)">141&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(11,'confirmed',1)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="11" data-type="confirmed" data-di="2" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><span class="ec" style="" onclick="editM(event,'name',11,'confirmed',2)">Максимедиа</span></span></td><td class="ac amc" style=""><span class="ec" onclick="editM(event,'amt',11,'confirmed',2)">181&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(11,'confirmed',2)">✕</button></td></tr><tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr><tr class="dr" draggable="true" data-mi="11" data-type="pipeline" data-di="0" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,11,0)"><span class="ec" style="" onclick="editM(event,'name',11,'pipeline',0)">Делимобиль</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',11,'pipeline',0)">4&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(11,'pipeline',0)">✕</button></td></tr><tr class="dr" draggable="true" data-mi="11" data-type="pipeline" data-di="1" ondragstart="onDS(event)" ondragend="onDE(event)"><td class="nc"><span style="display:flex;align-items:center;gap:4px"><input type="checkbox" checked="" title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,11,1)"><span class="ec" style="" onclick="editM(event,'name',11,'pipeline',1)">Барьер (проекты)</span></span></td><td class="ac amp" style=""><span class="ec" onclick="editM(event,'amt',11,'pipeline',1)">853&nbsp;776&nbsp;₽</span></td><td class="dc"><button class="dbtn" onclick="delDeal(11,'pipeline',1)">✕</button></td></tr></tbody></table><div class="mca"><button class="abtn" onclick="openModal(11,'confirmed')">+ Подтверждённая</button><button class="abtn pp" onclick="openModal(11,'pipeline')">+ Пайплайн</button></div><div class="mct"><div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">1&nbsp;303&nbsp;000&nbsp;₽</div></div><div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">4&nbsp;853&nbsp;776&nbsp;₽</div></div><div class="mctc" style="text-align:right"><div class="tl">Профит</div><div class="tv" style="color:var(--gr)">+6&nbsp;043&nbsp;882&nbsp;₽</div></div></div></div></div></div>
+  </div>
+  <div>
+    <div class="stl">Пайплайн вне плана — потенциал 2027+</div>
+    <div class="p27" id="p27card">
+      <div class="p27h">
+        <div style="font-size:14px;font-weight:700">Сделки вне текущего плана</div>
+        <span class="badge bca" id="p27-badge">38&nbsp;870&nbsp;000&nbsp;₽</span>
+      </div>
+      <table class="p27t"><thead><tr><th>Клиент</th><th style="text-align:right">Сумма</th><th>Комментарий</th><th></th></tr></thead>
+      <tbody id="p27-tbody"><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',0)">Хеликс (Сервис)</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',0)">1&nbsp;500&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',0)">Предварительно да, в 4Q начнём переговоры</span></td><td class="pd"><button class="dbtn" onclick="delP27(0)">✕</button></td></tr><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',1)">Боржоми (SRM)</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',1)">870&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',1)">Не обсуждали, ждём завершения работ</span></td><td class="pd"><button class="dbtn" onclick="delP27(1)">✕</button></td></tr><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',2)">Боржоми (продажи)</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',2)">2&nbsp;500&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',2)">Категорически не хочет платить</span></td><td class="pd"><button class="dbtn" onclick="delP27(2)">✕</button></td></tr><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',3)">Биокодекс</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',3)">9&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',3)">Идут переговоры, середина апреля</span></td><td class="pd"><button class="dbtn" onclick="delP27(3)">✕</button></td></tr><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',4)">Байер</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',4)">8&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',4)">Запланирована встреча, предварительно 20.04</span></td><td class="pd"><button class="dbtn" onclick="delP27(4)">✕</button></td></tr><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',5)">Аэроклуб</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',5)">5&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',5)">—</span></td><td class="pd"><button class="dbtn" onclick="delP27(5)">✕</button></td></tr><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',6)">Римборсо</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',6)">2&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',6)">Предварительно нет бюджета</span></td><td class="pd"><button class="dbtn" onclick="delP27(6)">✕</button></td></tr><tr class="dr" draggable="true"><td class="pn"><span class="ec" onclick="editP27(event,'name',7)">ХХ</span></td><td class="pa"><span class="ec" onclick="editP27(event,'amt',7)">10&nbsp;000&nbsp;000&nbsp;₽</span></td><td class="pno"><span class="ec" onclick="editP27(event,'note',7)">—</span></td><td class="pd"><button class="dbtn" onclick="delP27(7)">✕</button></td></tr><tr class="p27tot"><td><strong>Итого потенциал</strong></td><td class="pa">38&nbsp;870&nbsp;000&nbsp;₽</td><td></td><td></td></tr></tbody></table>
+      <div class="p27a"><button class="abtn pp" style="width:100%" onclick="addP27()">+ Добавить сделку</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="mdbg hid" id="modal">
+  <div class="mdbox">
+    <h3 id="md-title">Добавить сделку — Декабрь</h3>
+    <div class="mdf"><label>Контрагент</label><input id="md-name" type="text" placeholder="Название компании"></div>
+    <div class="mdf"><label>Сумма (₽)</label><input id="md-amt" type="number" min="0" placeholder="0"></div>
+    <div class="mdf"><label>Тип</label>
+      <select id="md-type"><option value="confirmed">✅ Подтверждённая</option><option value="pipeline">🔶 Пайплайн</option></select>
+    </div>
+    <div class="mdbts">
+      <button class="btn" onclick="closeModal()">Отмена</button>
+      <button class="btn pri" onclick="confirmModal()">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Сделка перемещена</div>
+
+<script>
+// ─── ДАННЫЕ ──────────────────────────────────────────────────────
+const PLAN = 85500000;
+
+// __DATA_START__
+const DEFAULTS = {
+  "months": [
+    {
+      "id": "jan",
+      "name": "Январь",
+      "plan": 3701023.58,
+      "confirmed": [
+        {
+          "name": "Римборсо",
+          "amt": 2623322.51
+        }
+      ],
+      "pipeline": []
+    },
+    {
+      "id": "feb",
+      "name": "Февраль",
+      "plan": 4349018.38,
+      "confirmed": [
+        {
+          "name": "OCT Clinical",
+          "amt": 393477.5
+        },
+        {
+          "name": "Банда Умников",
+          "amt": 163765.29
+        },
+        {
+          "name": "ZTM Logistic (1-й пл.)",
+          "amt": 360000
+        },
+        {
+          "name": "Фронтмед",
+          "amt": 152736.23
+        }
+      ],
+      "pipeline": []
+    },
+    {
+      "id": "mar",
+      "name": "Март",
+      "plan": 7130823.44,
+      "confirmed": [
+        {
+          "name": "Смарткард (продление)",
+          "amt": 110880
+        },
+        {
+          "name": "Русская рыбная компания",
+          "amt": 873157
+        },
+        {
+          "name": "Фронтмед",
+          "amt": 152736.23
+        }
+      ],
+      "pipeline": []
+    },
+    {
+      "id": "apr",
+      "name": "Апрель",
+      "plan": 6601949.03,
+      "confirmed": [
+        {
+          "name": "Штрих Ру",
+          "amt": 762000
+        },
+        {
+          "name": "Союз-22, MVP",
+          "amt": 362930
+        },
+        {
+          "name": "Смарткард (апсел)",
+          "amt": 1000000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Столица СЗ",
+          "amt": 250000
+        }
+      ]
+    },
+    {
+      "id": "may",
+      "name": "Май",
+      "plan": 5848700.12,
+      "confirmed": [
+        {
+          "name": "Боржоми (продажи)",
+          "amt": 3485000
+        },
+        {
+          "name": "Веддинг (1-я оплата)",
+          "amt": 600000
+        },
+        {
+          "name": "Регионы",
+          "amt": 800000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Музей",
+          "amt": 500000
+        }
+      ]
+    },
+    {
+      "id": "jun",
+      "name": "Июнь",
+      "plan": 6618384.86,
+      "confirmed": [
+        {
+          "name": "Промтекстиль",
+          "amt": 349000
+        },
+        {
+          "name": "Агротерра",
+          "amt": 1889609
+        },
+        {
+          "name": "Евроэксперт",
+          "amt": 362000
+        },
+        {
+          "name": "MR Group (апсел)",
+          "amt": 1135464
+        },
+        {
+          "name": "Веддинг (2-я оплата)",
+          "amt": 600000
+        },
+        {
+          "name": "Мерц",
+          "amt": 6000000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Васта отель",
+          "amt": 500000
+        },
+        {
+          "name": "Open Group (MVP)",
+          "amt": 300000
+        }
+      ]
+    },
+    {
+      "id": "jul",
+      "name": "Июль",
+      "plan": 6085168.09,
+      "confirmed": [
+        {
+          "name": "Аренадата",
+          "amt": 1500000
+        },
+        {
+          "name": "Радио Юнистар",
+          "amt": 295000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Хеликс (продажи)",
+          "amt": 1200000,
+          "active": false
+        },
+        {
+          "name": "Хеликс (ОСС)",
+          "amt": 300000,
+          "active": false
+        }
+      ]
+    },
+    {
+      "id": "aug",
+      "name": "Август",
+      "plan": 6647439.31,
+      "confirmed": [
+        {
+          "name": "Нордкор",
+          "amt": 470000
+        },
+        {
+          "name": "Кеминс",
+          "amt": 452000
+        },
+        {
+          "name": "МодернВэй",
+          "amt": 150000
+        },
+        {
+          "name": "Электрострой",
+          "amt": 190000
+        },
+        {
+          "name": "Embedika",
+          "amt": 220000
+        },
+        {
+          "name": "ZTM Logistic (2-й пл.)",
+          "amt": 360000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Барьер (продажи)",
+          "amt": 2535840
+        },
+        {
+          "name": "Союз-22 (апсел)",
+          "amt": 1300000
+        }
+      ]
+    },
+    {
+      "id": "sep",
+      "name": "Сентябрь",
+      "plan": 5677864.33,
+      "confirmed": [
+        {
+          "name": "Бауш энд Ломб",
+          "amt": 310000
+        },
+        {
+          "name": "Химпром",
+          "amt": 400000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Аэроклуб (чаты)",
+          "amt": 3000000
+        },
+        {
+          "name": "МИРЭА",
+          "amt": 2000000
+        }
+      ]
+    },
+    {
+      "id": "oct",
+      "name": "Октябрь",
+      "plan": 4404104.53,
+      "confirmed": [
+        {
+          "name": "Столица СЗ",
+          "amt": 650000
+        },
+        {
+          "name": "Индримс",
+          "amt": 105000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "RX Code",
+          "amt": 3000000
+        }
+      ]
+    },
+    {
+      "id": "nov",
+      "name": "Ноябрь",
+      "plan": 8284095.38,
+      "confirmed": [
+        {
+          "name": "Биокодекс",
+          "amt": 9000000
+        },
+        {
+          "name": "Haleon",
+          "amt": 358630.49
+        },
+        {
+          "name": "Байер",
+          "amt": 8764000
+        },
+        {
+          "name": "Аэроклуб",
+          "amt": 6000000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Римборсо (апсел)",
+          "amt": 1500000
+        },
+        {
+          "name": "БХК",
+          "amt": 1200000
+        },
+        {
+          "name": "Open Group (prod)",
+          "amt": 1500000
+        }
+      ]
+    },
+    {
+      "id": "dec",
+      "name": "Декабрь",
+      "plan": 20151428.95,
+      "confirmed": [
+        {
+          "name": "Gefco",
+          "amt": 981000
+        },
+        {
+          "name": "Бионова",
+          "amt": 141000
+        },
+        {
+          "name": "Максимедиа",
+          "amt": 181000
+        }
+      ],
+      "pipeline": [
+        {
+          "name": "Делимобиль",
+          "amt": 4000000
+        },
+        {
+          "name": "Барьер (проекты)",
+          "amt": 853776
+        }
+      ]
+    }
+  ],
+  "p27": [
+    {
+      "name": "Хеликс (Сервис)",
+      "amt": 1500000,
+      "note": "Предварительно да, в 4Q начнём переговоры"
+    },
+    {
+      "name": "Боржоми (SRM)",
+      "amt": 870000,
+      "note": "Не обсуждали, ждём завершения работ"
+    },
+    {
+      "name": "Боржоми (продажи)",
+      "amt": 2500000,
+      "note": "Категорически не хочет платить"
+    },
+    {
+      "name": "Биокодекс",
+      "amt": 9000000,
+      "note": "Идут переговоры, середина апреля"
+    },
+    {
+      "name": "Байер",
+      "amt": 8000000,
+      "note": "Запланирована встреча, предварительно 20.04"
+    },
+    {
+      "name": "Аэроклуб",
+      "amt": 5000000,
+      "note": "—"
+    },
+    {
+      "name": "Римборсо",
+      "amt": 2000000,
+      "note": "Предварительно нет бюджета"
+    },
+    {
+      "name": "ХХ",
+      "amt": 10000000,
+      "note": "—"
+    }
+  ]
+};
+// __DATA_END__
+
+// ─── STATE ───────────────────────────────────────────────────────
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+let D = clone(DEFAULTS);
+
+// ─── ФОРМАТ ──────────────────────────────────────────────────────
+function R(n){ return new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(n||0); }
+function pct(a,b){ return b ? Math.round(a/b*100) : 0; }
+function N(s){ const n=parseFloat(String(s).replace(/[^\d.-]/g,'')); return isNaN(n)?0:Math.max(0,n); }
+function H(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function id(x){ return document.getElementById(x); }
+function setText(x,v){ const e=id(x); if(e) e.textContent=v; }
+
+// ─── ВЫЧИСЛЕНИЯ ──────────────────────────────────────────────────
+// Правила:
+// - plan каждого месяца ФИКСИРОВАН и не меняется
+// - carry = профит (превышение) с предыдущего месяца (только >0)
+// - need = plan - carry  (сколько нужно добрать в этом месяце)
+// - gap = need - (sc+sp)  (>0 недобор, <0 профит)
+// - следующий carry = max(0, -gap) = профит этого месяца
+function compute(){
+  let carry = 0;
+  return D.months.map(function(m){
+    var sc = m.confirmed.reduce(function(s,d){ return s+(+d.amt||0); }, 0);
+    var sp = m.pipeline.reduce(function(s,d){ return s+(d.active===false ? 0 : (+d.amt||0)); }, 0);
+    var st = sc + sp;
+    var tc = carry;                          // профит, пришедший с прошлого месяца
+    var need = Math.max(0, m.plan - tc);     // сколько нужно закрыть в этом месяце
+    var gap = need - st;                     // >0 недобор, <0 профит
+    carry = gap < 0 ? -gap : 0;             // только профит переходит дальше
+    return { id:m.id, name:m.name, plan:m.plan, confirmed:m.confirmed, pipeline:m.pipeline,
+             sc:sc, sp:sp, st:st, tc:tc, need:need, gap:gap };
+  });
+}
+
+// ─── DRAG STATE ──────────────────────────────────────────────────
+var DRAG = null;
+// DRAG = { src:'month'|'p27', mi:number, type:string, di:number }
+// src='p27': только di
+
+// ─── RENDER ──────────────────────────────────────────────────────
+function render(){
+  var C = compute();
+
+  // Summary
+  var tc = C.reduce(function(s,m){ return s+m.sc; }, 0);
+  var tp = C.reduce(function(s,m){ return s+m.sp; }, 0);
+  var ta = tc + tp;
+  var gap = PLAN - ta;
+
+  setText('s-pl', R(PLAN));
+  setText('s-co', R(tc));  setText('s-co-s', pct(tc,PLAN)+'% от плана');
+  setText('s-pi', R(tp));  setText('s-pi-s', pct(tp,PLAN)+'% от плана');
+  setText('s-al', R(ta));  setText('s-al-s', pct(ta,PLAN)+'% от плана');
+
+  var ge = id('s-gp'), gs = id('s-gp-s');
+  if(gap > 0){
+    ge.textContent = R(gap);      ge.className='vl cr'; gs.textContent='не хватает до плана';
+  } else {
+    ge.textContent = '+'+R(-gap); ge.className='vl cg'; gs.textContent='превышение плана';
+  }
+
+  var cp = Math.min(100, tc/PLAN*100);
+  var pp = Math.min(100-cp, tp/PLAN*100);
+  id('pg-c').style.width = cp+'%';
+  id('pg-p').style.width = pp+'%';
+  setText('pg-pct', pct(ta,PLAN)+'%');
+
+  renderMonths(C);
+  renderP27();
+}
+
+// ─── МЕСЯЦЫ ──────────────────────────────────────────────────────
+function renderMonths(C){
+  var grid = id('mgrid');
+
+  // Запоминаем свёрнутые карточки
+  var collapsed = {};
+  grid.querySelectorAll('.mcbd').forEach(function(b){ collapsed[b.id] = b.classList.contains('cl'); });
+  grid.innerHTML = '';
+
+  C.forEach(function(m, mi){
+    var isOver  = m.st > m.need;
+    var isUnder = m.need > 0 && m.st < m.need * 0.5 && m.st > 0;
+    var cp = m.need > 0 ? Math.min(100, m.sc/m.need*100) : (m.sc > 0 ? 100 : 0);
+    var pp = m.need > 0 ? Math.min(100-cp, m.sp/m.need*100) : 0;
+    var wasColl = collapsed['bd-'+m.id] === true;
+
+    var card = document.createElement('div');
+    card.className = 'mc' + (isOver?' ov':isUnder?' un':'');
+    card.id = 'card-'+m.id;
+    card.dataset.mi = String(mi);
+
+    // Бейджи
+    var carryBadge = m.tc > 0
+      ? '<span class="badge bca" title="Профит с прошлого месяца">+'+R(m.tc)+'</span>'
+      : '';
+    var gapBadge = m.gap > 0
+      ? '<span class="badge bun">−'+R(m.gap)+'</span>'
+      : '<span class="badge bov">+'+R(-m.gap)+'</span>';
+
+    card.innerHTML =
+      '<div class="mch" onclick="toggleM(\''+m.id+'\')">'+
+        '<div><div class="mcn">'+H(m.name)+'</div>'+
+          '<div class="mcp">план '+R(m.plan)+'</div>'+
+        '</div>'+
+        '<div class="mcb">'+carryBadge+gapBadge+
+          '<svg class="chv '+(wasColl?'':'op')+'" id="chv-'+m.id+'" viewBox="0 0 14 14" fill="none">'+
+            '<path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'+
+          '</svg>'+
+        '</div>'+
+      '</div>'+
+      '<div class="mpr"><div class="mprc" style="width:'+cp+'%"></div><div class="mprp" style="width:'+pp+'%"></div></div>'+
+      '<div class="mcbd '+(wasColl?'cl':'')+'" id="bd-'+m.id+'">'+
+        buildTable(m, mi)+
+        '<div class="mca">'+
+          '<button class="abtn" onclick="openModal('+mi+',\'confirmed\')">+ Подтверждённая</button>'+
+          '<button class="abtn pp" onclick="openModal('+mi+',\'pipeline\')">+ Пайплайн</button>'+
+        '</div>'+
+        '<div class="mct">'+
+          '<div class="mctc"><div class="tl">Подтверждено</div><div class="tv cg">'+R(m.sc)+'</div></div>'+
+          '<div class="mctc"><div class="tl">Пайплайн</div><div class="tv cy">'+(m.sp>0?R(m.sp):'—')+'</div></div>'+
+          '<div class="mctc" style="text-align:right"><div class="tl">'+(m.gap>0?'Не хватает':'Профит')+'</div>'+
+            '<div class="tv" style="color:'+(isOver?'var(--gr)':m.gap>0?'var(--rd)':'var(--t1)')+'">'+(m.gap>0?R(m.gap):'+'+R(-m.gap))+'</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+
+    // Drop zone — принимаем сделки из других месяцев и из p27
+    card.addEventListener('dragover', function(e){
+      if(!DRAG) return;
+      e.preventDefault();
+      document.querySelectorAll('.mc.dov').forEach(function(c){ c.classList.remove('dov'); });
+      card.classList.add('dov');
+    });
+    card.addEventListener('dragleave', function(e){
+      if(!e.relatedTarget || !card.contains(e.relatedTarget)) card.classList.remove('dov');
+    });
+    card.addEventListener('drop', function(e){
+      e.preventDefault();
+      card.classList.remove('dov');
+      if(!DRAG) return;
+      var tmi = +card.dataset.mi;
+      if(DRAG.src === 'p27'){
+        // из p27 → в пайплайн месяца
+        var idx27 = D.p27.indexOf(DRAG.deal);
+        if(idx27 === -1){ DRAG=null; return; }
+        var deal27 = D.p27.splice(idx27, 1)[0];
+        D.months[tmi].pipeline.push({name:deal27.name, amt:deal27.amt});
+      } else {
+        // из месяца → в другой месяц
+        if(tmi === DRAG.mi){ DRAG=null; return; }
+        var srcArr = D.months[DRAG.mi][DRAG.type];
+        var realIdx = srcArr.indexOf(DRAG.deal);
+        if(realIdx === -1){ DRAG=null; return; }
+        var moved = srcArr.splice(realIdx, 1)[0];
+        D.months[tmi][DRAG.type].push(moved);
+      }
+      DRAG = null;
+      render();
+      toast('✓ Сделка перемещена');
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+function buildTable(m, mi){
+  var rows = '';
+  if(m.confirmed.length){
+    rows += '<tr class="sh"><td colspan="3">✅ Подтверждённые</td></tr>';
+    m.confirmed.forEach(function(d,di){ rows += dealRow(d,mi,'confirmed',di); });
+  }
+  if(m.pipeline.length){
+    rows += '<tr class="sh"><td colspan="3">🔶 Пайплайн</td></tr>';
+    m.pipeline.forEach(function(d,di){ rows += dealRow(d,mi,'pipeline',di); });
+  }
+  if(!m.confirmed.length && !m.pipeline.length){
+    rows = '<tr class="er"><td colspan="3">Нет сделок — добавьте ниже</td></tr>';
+  }
+  return '<table class="dt"><tbody>'+rows+'</tbody></table>';
+}
+
+function dealRow(d, mi, type, di){
+  var ac = type==='confirmed' ? 'amc' : 'amp';
+  var inactive = (type==='pipeline' && d.active===false);
+  var fade = inactive ? 'opacity:.4;text-decoration:line-through' : '';
+  var chk = type==='pipeline'
+    ? '<input type="checkbox" '+(inactive?'':'checked')+' title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--yw);flex-shrink:0" onclick="togglePipe(event,'+mi+','+di+')">'
+    : '';
+  return '<tr class="dr" draggable="true" data-mi="'+mi+'" data-type="'+type+'" data-di="'+di+'" ondragstart="onDS(event)" ondragend="onDE(event)">'+
+    '<td class="nc"><span style="display:flex;align-items:center;gap:4px">'+chk+'<span class="ec" style="'+fade+'" onclick="editM(event,\'name\','+mi+',\''+type+'\','+di+')">'+H(d.name)+'</span></span></td>'+
+    '<td class="ac '+ac+'" style="'+fade+'"><span class="ec" onclick="editM(event,\'amt\','+mi+',\''+type+'\','+di+')">'+R(d.amt)+'</span></td>'+
+    '<td class="dc"><button class="dbtn" onclick="delDeal('+mi+',\''+type+'\','+di+')">✕</button></td>'+
+  '</tr>';
+}
+
+// ─── DRAG ────────────────────────────────────────────────────────
+function onDS(e){
+  var tr = e.currentTarget;
+  var mi = +tr.dataset.mi;
+  var type = tr.dataset.type;
+  var di = +tr.dataset.di;
+  // Храним ССЫЛКУ на объект сделки, а не индекс
+  var deal = D.months[mi] && D.months[mi][type] && D.months[mi][type][di];
+  if(!deal){ return; }
+  DRAG = { src:'month', mi:mi, type:type, di:di, deal:deal };
+  tr.classList.add('dg');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain','1');
+}
+function onDE(e){
+  e.currentTarget.classList.remove('dg');
+  document.querySelectorAll('.mc.dov,.p27.dov').forEach(function(c){ c.classList.remove('dov'); });
+  setTimeout(function(){ DRAG = null; }, 80);
+}
+
+// ─── РЕДАКТИРОВАНИЕ ЯЧЕЕК ────────────────────────────────────────
+function editM(e, field, mi, type, di){
+  e.stopPropagation();
+  var span = e.currentTarget;
+  if(span.classList.contains('act')) return;
+  var deal = D.months[mi][type][di];
+  startEdit(span, field==='amt' ? deal.amt : deal.name, field==='amt', function(val){
+    deal[field] = field==='amt' ? N(val) : (val.trim()||deal[field]);
+    render();
+  });
+}
+
+function startEdit(span, initVal, isNum, onCommit){
+  span.classList.add('act');
+  var inp = document.createElement('input');
+  inp.type = isNum ? 'number' : 'text';
+  inp.value = initVal;
+  inp.style.cssText = 'background:transparent;border:none;outline:none;color:inherit;font:inherit;width:100%;padding:0';
+  span.textContent = '';
+  span.appendChild(inp);
+  inp.focus(); inp.select();
+  var done = false;
+  function commit(){
+    if(done) return; done = true;
+    span.classList.remove('act');
+    onCommit(inp.value);
+  }
+  inp.addEventListener('blur', commit);
+  inp.addEventListener('keydown', function(ev){
+    if(ev.key==='Enter'){ ev.preventDefault(); commit(); }
+    if(ev.key==='Escape'){ done=true; span.classList.remove('act'); render(); }
+  });
+}
+
+// ─── ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ ИЗ РАСЧЁТА ──────────────────────────
+function togglePipe(e, mi, di){
+  e.stopPropagation();
+  var d = D.months[mi].pipeline[di];
+  if(!d) return;
+  d.active = (d.active === false) ? true : false;
+  render();
+}
+
+// ─── УДАЛЕНИЕ ────────────────────────────────────────────────────
+function delDeal(mi, type, di){
+  var name = (D.months[mi][type][di]||{}).name||'сделку';
+  if(!confirm('Удалить "'+name+'"?')) return;
+  D.months[mi][type].splice(di,1);
+  render();
+}
+
+// ─── МОДАЛКА ДОБАВЛЕНИЯ ──────────────────────────────────────────
+var _mCtx = null;
+function openModal(mi, type){
+  _mCtx = {mi:mi, type:type};
+  id('md-title').textContent = 'Добавить сделку — '+D.months[mi].name;
+  id('md-name').value=''; id('md-amt').value=''; id('md-type').value=type;
+  id('modal').classList.remove('hid');
+  setTimeout(function(){ id('md-name').focus(); }, 40);
+}
+function closeModal(){ id('modal').classList.add('hid'); _mCtx=null; }
+function confirmModal(){
+  var name = id('md-name').value.trim();
+  var amt  = N(id('md-amt').value);
+  var type = id('md-type').value;
+  if(!name){ id('md-name').focus(); return; }
+  D.months[_mCtx.mi][type].push({name:name, amt:amt});
+  closeModal(); render();
+  toast('✓ Сделка добавлена');
+}
+id('modal').addEventListener('click', function(e){ if(e.target===id('modal')) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+// ─── PIPELINE 2027 ───────────────────────────────────────────────
+function renderP27(){
+  var tbody = id('p27-tbody');
+  tbody.innerHTML = '';
+  var total = 0;
+
+  D.p27.forEach(function(p, pi){
+    total += (+p.amt||0);
+    var tr = document.createElement('tr');
+    tr.className = 'dr';
+    tr.draggable = true;
+    tr.innerHTML =
+      '<td class="pn"><span class="ec" onclick="editP27(event,\'name\','+pi+')">'+H(p.name)+'</span></td>'+
+      '<td class="pa"><span class="ec" onclick="editP27(event,\'amt\','+pi+')">'+R(p.amt)+'</span></td>'+
+      '<td class="pno"><span class="ec" onclick="editP27(event,\'note\','+pi+')">'+H(p.note||'—')+'</span></td>'+
+      '<td class="pd"><button class="dbtn" onclick="delP27('+pi+')">✕</button></td>';
+
+    (function(idx){
+      tr.addEventListener('dragstart', function(e){
+        DRAG = {src:'p27', di:idx, deal:D.p27[idx]};
+        tr.classList.add('dg');
+        e.dataTransfer.effectAllowed='move';
+        e.dataTransfer.setData('text/plain','1');
+      });
+      tr.addEventListener('dragend', function(){
+        tr.classList.remove('dg');
+        document.querySelectorAll('.mc.dov,.p27.dov').forEach(function(c){ c.classList.remove('dov'); });
+        setTimeout(function(){ DRAG=null; }, 80);
+      });
+    })(pi);
+
+    tbody.appendChild(tr);
+  });
+
+  var tot = document.createElement('tr');
+  tot.className = 'p27tot';
+  tot.innerHTML = '<td><strong>Итого потенциал</strong></td><td class="pa">'+R(total)+'</td><td></td><td></td>';
+  tbody.appendChild(tot);
+  setText('p27-badge', R(total));
+
+  // Drop zone p27 ← из месяцев
+  var card = id('p27card');
+  card.ondragover = function(e){
+    if(!DRAG || DRAG.src==='p27') return;
+    e.preventDefault(); card.classList.add('dov');
+  };
+  card.ondragleave = function(e){
+    if(!e.relatedTarget||!card.contains(e.relatedTarget)) card.classList.remove('dov');
+  };
+  card.ondrop = function(e){
+    e.preventDefault(); card.classList.remove('dov');
+    if(!DRAG || DRAG.src==='p27') return;
+    var realIdx2 = D.months[DRAG.mi][DRAG.type].indexOf(DRAG.deal);
+    if(realIdx2 !== -1){
+      var moved2 = D.months[DRAG.mi][DRAG.type].splice(realIdx2,1)[0];
+      D.p27.push({name:moved2.name, amt:moved2.amt, note:'—'});
+    }
+    DRAG=null; render();
+    toast('✓ Перенесено в пайплайн 2027');
+  };
+}
+
+function editP27(e, field, pi){
+  e.stopPropagation();
+  var span = e.currentTarget;
+  if(span.classList.contains('act')) return;
+  var p = D.p27[pi];
+  startEdit(span, p[field]||'', field==='amt', function(val){
+    p[field] = field==='amt' ? N(val) : (val.trim()||p[field]||'—');
+    renderP27();
+  });
+}
+
+function addP27(){
+  D.p27.push({name:'Новый клиент', amt:0, note:'—'});
+  renderP27();
+  setTimeout(function(){
+    var rows = id('p27-tbody').querySelectorAll('tr.dr');
+    var last = rows[rows.length-1];
+    if(last){ var ec=last.querySelector('.ec'); if(ec) ec.click(); }
+  }, 50);
+}
+
+function delP27(pi){
+  if(!confirm('Удалить?')) return;
+  D.p27.splice(pi,1); renderP27();
+}
+
+// ─── СВЕРНУТЬ / РАЗВЕРНУТЬ ───────────────────────────────────────
+function toggleM(mid){
+  var b=id('bd-'+mid), c=id('chv-'+mid);
+  if(b){ b.classList.toggle('cl'); c.classList.toggle('op'); }
+}
+function expandAll(){
+  document.querySelectorAll('.mcbd').forEach(function(b){ b.classList.remove('cl'); });
+  document.querySelectorAll('.chv').forEach(function(c){ c.classList.add('op'); });
+}
+function collapseAll(){
+  document.querySelectorAll('.mcbd').forEach(function(b){ b.classList.add('cl'); });
+  document.querySelectorAll('.chv').forEach(function(c){ c.classList.remove('op'); });
+}
+
+// ─── СОХРАНИТЬ / ЭКСПОРТ / ИМПОРТ ────────────────────────────────
+function doSave(){
+  try{
+    var html = document.documentElement.outerHTML;
+    var data = JSON.stringify(D, null, 2);
+    var newHtml = html.replace(
+      /\/\/ __DATA_START__[\s\S]*?\/\/ __DATA_END__/,
+      '// __DATA_START__\nconst DEFAULTS = ' + data + ';\n// __DATA_END__'
+    );
+    var blob = new Blob(['<!DOCTYPE html>\n'+newHtml], {type:'text/html'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href=url; a.download='plan_egorov_2026.htm';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    toast('💾 Файл сохранён — проверь папку Загрузки');
+  } catch(e){ toast('⚠ Ошибка: '+e.message); }
+}
+
+function doReset(){
+  if(!confirm('Сбросить все изменения к исходным данным?')) return;
+  D = clone(DEFAULTS); render(); toast('↺ Сброшено');
+}
+
+function doExport(){
+  try{
+    var url = URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));
+    var a = document.createElement('a');
+    a.href=url; a.download='plan_backup_'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 500);
+    toast('⬇ JSON-бэкап скачан');
+  } catch(e){ toast('⚠ Ошибка экспорта'); }
+}
+
+function doImport(e){
+  var f = e.target.files[0]; if(!f) return;
+  var r = new FileReader();
+  r.onload = function(ev){
+    try{ D=JSON.parse(ev.target.result); render(); toast('⬆ Данные загружены'); }
+    catch(err){ alert('Ошибка: '+err.message); }
+  };
+  r.readAsText(f);
+  e.target.value='';
+}
+
+// ─── TOAST ───────────────────────────────────────────────────────
+function toast(msg){
+  var t=id('toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._t); t._t=setTimeout(function(){ t.classList.remove('on'); },2200);
+}
+
+// ─── GOOGLE DRIVE ───────────────────────────────────────────────
+var CLIENT_ID = '550657527137-tgoarmen16be2l0ms8diilgdllptejvb.apps.googleusercontent.com';
+var SCOPES = 'https://www.googleapis.com/auth/drive.appdata';
+var FILE_NAME = 'plan2026_egorov.json';
+var _fileId = null;
+var _token = null;
+
+function setStatus(msg, color){
+  var el = id('save-status');
+  if(!el) return;
+  el.textContent = msg;
+  el.style.color = color || 'var(--t3)';
+}
+
+function signIn(){
+  var client = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: SCOPES,
+    callback: function(resp){
+      if(resp.error){ setStatus('⚠ Ошибка входа','var(--rd)'); return; }
+      _token = resp.access_token;
+      id('btn-login').textContent = '✓ Подключено';
+      id('btn-login').style.background = 'rgba(34,197,94,.15)';
+      id('btn-login').style.color = 'var(--gr)';
+      id('btn-login').onclick = signOut;
+      setStatus('⏳ Загрузка данных...','var(--t3)');
+      loadFromDrive();
+    }
+  });
+  client.requestAccessToken();
+}
+
+function signOut(){
+  google.accounts.oauth2.revoke(_token, function(){
+    _token = null; _fileId = null;
+    id('btn-login').textContent = '🔑 Войти';
+    id('btn-login').style.background = 'var(--bg4)';
+    id('btn-login').style.color = 'var(--t2)';
+    id('btn-login').onclick = signIn;
+    setStatus('Выход выполнен','var(--t3)');
+  });
+}
+
+function loadFromDrive(){
+  // Ищем файл в AppData
+  fetch('https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name%3D%22'+FILE_NAME+'%22&fields=files(id,name)',{
+    headers: {'Authorization': 'Bearer '+_token}
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(res){
+    if(res.files && res.files.length > 0){
+      _fileId = res.files[0].id;
+      return fetch('https://www.googleapis.com/drive/v3/files/'+_fileId+'?alt=media',{
+        headers: {'Authorization': 'Bearer '+_token}
+      }).then(function(r){ return r.json(); });
+    }
+    return null;
+  })
+  .then(function(data){
+    if(data && data.months){
+      D = data;
+      render();
+      setStatus('✓ Данные загружены из Drive','var(--gr)');
+      setTimeout(function(){ setStatus(''); }, 3000);
+    } else {
+      setStatus('Новый файл создан в Drive','var(--t3)');
+      saveToDrive();
+    }
+  })
+  .catch(function(e){ setStatus('⚠ Ошибка: '+e.message,'var(--rd)'); });
+}
+
+function saveToDrive(){
+  if(!_token){ setStatus('⚠ Нужно войти через Google','var(--rd)'); return; }
+  setStatus('⏳ Сохраняю в Drive...','var(--t3)');
+  var body = JSON.stringify(D);
+  var meta = JSON.stringify({name: FILE_NAME, parents: ['appDataFolder']});
+
+  if(_fileId){
+    // Обновляем существующий файл
+    fetch('https://www.googleapis.com/upload/drive/v3/files/'+_fileId+'?uploadType=media',{
+      method: 'PATCH',
+      headers: {'Authorization': 'Bearer '+_token, 'Content-Type': 'application/json'},
+      body: body
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(){ setStatus('✓ Сохранено в Google Drive','var(--gr)'); setTimeout(function(){ setStatus(''); },3000); })
+    .catch(function(e){ setStatus('⚠ '+e.message,'var(--rd)'); });
+  } else {
+    // Создаём новый файл
+    var form = '--boundary\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+meta+'\r\n--boundary\r\nContent-Type: application/json\r\n\r\n'+body+'\r\n--boundary--';
+    fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{
+      method: 'POST',
+      headers: {'Authorization': 'Bearer '+_token, 'Content-Type': 'multipart/related; boundary=boundary'},
+      body: form
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(f){
+      _fileId = f.id;
+      setStatus('✓ Сохранено в Google Drive','var(--gr)');
+      setTimeout(function(){ setStatus(''); },3000);
+    })
+    .catch(function(e){ setStatus('⚠ '+e.message,'var(--rd)'); });
+  }
+}
+
+// Переопределяем doSave — сохраняем в Drive
+function doSave(){
+  if(_token){
+    saveToDrive();
+  } else {
+    // Fallback — скачиваем файл как раньше
+    var h = document.documentElement.outerHTML;
+    var d = JSON.stringify(D,null,2);
+    var nh = h.replace(/\/\/ __DATA_START__[\s\S]*?\/\/ __DATA_END__/,'// __DATA_START__\nconst DEFAULTS = '+d+';\n// __DATA_END__');
+    var blob = new Blob(['<!DOCTYPE html>\n'+nh],{type:'text/html'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href=url; a.download='plan_egorov_2026.htm';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); },1000);
+    setStatus('💾 Файл скачан (войди в Google для облака)','var(--yw)');
+  }
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+render();
+// Пробуем тихую авторизацию при загрузке
+window.addEventListener('load', function(){
+  if(typeof google !== 'undefined' && google.accounts){
+    var client = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      prompt: '',
+      callback: function(resp){
+        if(resp && !resp.error && resp.access_token){
+          _token = resp.access_token;
+          id('btn-login').textContent = '✓ Drive';
+          id('btn-login').style.background = 'rgba(34,197,94,.15)';
+          id('btn-login').style.color = 'var(--gr)';
+          id('btn-login').onclick = signOut;
+          loadFromDrive();
+        }
+      }
+    });
+    client.requestAccessToken({prompt:''});
+  }
+});
+</script>
+
+
+</body></html>
