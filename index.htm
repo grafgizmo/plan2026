@@ -3,8 +3,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>План продаж 2026 — Егоров</title>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="https://apis.google.com/js/api.js" async defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -69,7 +67,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 
 .mch{padding:11px 13px;border-bottom:1px solid var(--bd);cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
 .mcn{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
-.mcp{font-size:10px;color:var(--t3);margin-top:2px}
+.mcp{font-size:10px;color:var(--t2);margin-top:2px}
 .mcb{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
 .badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;line-height:1.5}
 .bov{background:rgba(34,197,94,.15);color:#4ade80}
@@ -170,8 +168,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
     <button class="btn" onclick="collapseAll()">Свернуть</button>
     <button class="btn" onclick="doReset()">↺ Сброс</button>
     <button class="btn pri" onclick="doSave()">💾 Сохранить</button>
-    <button class="btn" id="btn-login" onclick="signIn()" style="background:var(--bg4);border-color:rgba(255,255,255,.2)">🔑 Войти</button>
-    <span id="save-status" style="font-size:11px;font-weight:600;color:var(--t3);padding:0 4px"></span>
+    <button class="btn" onclick="doExport()">⬇ Экспорт</button>
+    <button class="btn" onclick="id('fi').click()">⬆ Импорт</button>
+    <input id="fi" type="file" accept=".json" style="display:none" onchange="doImport(event)">
   </div>
 </div>
 
@@ -193,7 +192,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
   <div class="li"><div class="ld" style="background:var(--yw)"></div>Пайплайн</div>
   <div class="li"><div class="ld" style="background:var(--or)"></div>Профит → переходит в следующий месяц</div>
   <div class="li"><div class="ld" style="background:var(--rd)"></div>Недовыполнение</div>
-  <div class="lh">✏ Клик по имени/сумме — редактировать &nbsp;|&nbsp; ☰ Перетащить — сменить месяц &nbsp;|&nbsp; ☑ Чекбокс пайплайна — включить/исключить из расчёта</div>
+  <div class="lh">✏ Клик по имени/сумме — редактировать &nbsp;|&nbsp; ☰ Перетащить на др. месяц — переместить &nbsp;|&nbsp; ☰ Перетащить на тот же месяц — сменить тип (подтверждённая↔пайплайн) &nbsp;|&nbsp; ☑ Чекбокс — включить/исключить</div>
 </div>
 </div><!-- /top -->
 
@@ -762,13 +761,20 @@ function renderMonths(C){
         var deal27 = D.p27.splice(idx27, 1)[0];
         D.months[tmi].pipeline.push({name:deal27.name, amt:deal27.amt});
       } else {
-        // из месяца → в другой месяц
-        if(tmi === DRAG.mi){ DRAG=null; return; }
+        // из месяца → в другой месяц ИЛИ смена типа в том же месяце
         var srcArr = D.months[DRAG.mi][DRAG.type];
         var realIdx = srcArr.indexOf(DRAG.deal);
         if(realIdx === -1){ DRAG=null; return; }
         var moved = srcArr.splice(realIdx, 1)[0];
-        D.months[tmi][DRAG.type].push(moved);
+        if(tmi === DRAG.mi){
+          // тот же месяц — переключаем тип confirmed↔pipeline
+          var newType = DRAG.type === 'confirmed' ? 'pipeline' : 'confirmed';
+          // если переводим в confirmed — убираем active флаг
+          if(newType === 'confirmed') delete moved.active;
+          D.months[tmi][newType].push(moved);
+        } else {
+          D.months[tmi][DRAG.type].push(moved);
+        }
       }
       DRAG = null;
       render();
@@ -1056,154 +1062,8 @@ function toast(msg){
   clearTimeout(t._t); t._t=setTimeout(function(){ t.classList.remove('on'); },2200);
 }
 
-// ─── GOOGLE DRIVE ───────────────────────────────────────────────
-var CLIENT_ID = '550657527137-tgoarmen16be2l0ms8diilgdllptejvb.apps.googleusercontent.com';
-var SCOPES = 'https://www.googleapis.com/auth/drive.appdata';
-var FILE_NAME = 'plan2026_egorov.json';
-var _fileId = null;
-var _token = null;
-
-function setStatus(msg, color){
-  var el = id('save-status');
-  if(!el) return;
-  el.textContent = msg;
-  el.style.color = color || 'var(--t3)';
-}
-
-function signIn(){
-  var client = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    callback: function(resp){
-      if(resp.error){ setStatus('⚠ Ошибка входа','var(--rd)'); return; }
-      _token = resp.access_token;
-      id('btn-login').textContent = '✓ Подключено';
-      id('btn-login').style.background = 'rgba(34,197,94,.15)';
-      id('btn-login').style.color = 'var(--gr)';
-      id('btn-login').onclick = signOut;
-      setStatus('⏳ Загрузка данных...','var(--t3)');
-      loadFromDrive();
-    }
-  });
-  client.requestAccessToken();
-}
-
-function signOut(){
-  google.accounts.oauth2.revoke(_token, function(){
-    _token = null; _fileId = null;
-    id('btn-login').textContent = '🔑 Войти';
-    id('btn-login').style.background = 'var(--bg4)';
-    id('btn-login').style.color = 'var(--t2)';
-    id('btn-login').onclick = signIn;
-    setStatus('Выход выполнен','var(--t3)');
-  });
-}
-
-function loadFromDrive(){
-  // Ищем файл в AppData
-  fetch('https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name%3D%22'+FILE_NAME+'%22&fields=files(id,name)',{
-    headers: {'Authorization': 'Bearer '+_token}
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(res){
-    if(res.files && res.files.length > 0){
-      _fileId = res.files[0].id;
-      return fetch('https://www.googleapis.com/drive/v3/files/'+_fileId+'?alt=media',{
-        headers: {'Authorization': 'Bearer '+_token}
-      }).then(function(r){ return r.json(); });
-    }
-    return null;
-  })
-  .then(function(data){
-    if(data && data.months){
-      D = data;
-      render();
-      setStatus('✓ Данные загружены из Drive','var(--gr)');
-      setTimeout(function(){ setStatus(''); }, 3000);
-    } else {
-      setStatus('Новый файл создан в Drive','var(--t3)');
-      saveToDrive();
-    }
-  })
-  .catch(function(e){ setStatus('⚠ Ошибка: '+e.message,'var(--rd)'); });
-}
-
-function saveToDrive(){
-  if(!_token){ setStatus('⚠ Нужно войти через Google','var(--rd)'); return; }
-  setStatus('⏳ Сохраняю в Drive...','var(--t3)');
-  var body = JSON.stringify(D);
-  var meta = JSON.stringify({name: FILE_NAME, parents: ['appDataFolder']});
-
-  if(_fileId){
-    // Обновляем существующий файл
-    fetch('https://www.googleapis.com/upload/drive/v3/files/'+_fileId+'?uploadType=media',{
-      method: 'PATCH',
-      headers: {'Authorization': 'Bearer '+_token, 'Content-Type': 'application/json'},
-      body: body
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(){ setStatus('✓ Сохранено в Google Drive','var(--gr)'); setTimeout(function(){ setStatus(''); },3000); })
-    .catch(function(e){ setStatus('⚠ '+e.message,'var(--rd)'); });
-  } else {
-    // Создаём новый файл
-    var form = '--boundary\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+meta+'\r\n--boundary\r\nContent-Type: application/json\r\n\r\n'+body+'\r\n--boundary--';
-    fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{
-      method: 'POST',
-      headers: {'Authorization': 'Bearer '+_token, 'Content-Type': 'multipart/related; boundary=boundary'},
-      body: form
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(f){
-      _fileId = f.id;
-      setStatus('✓ Сохранено в Google Drive','var(--gr)');
-      setTimeout(function(){ setStatus(''); },3000);
-    })
-    .catch(function(e){ setStatus('⚠ '+e.message,'var(--rd)'); });
-  }
-}
-
-// Переопределяем doSave — сохраняем в Drive
-function doSave(){
-  if(_token){
-    saveToDrive();
-  } else {
-    // Fallback — скачиваем файл как раньше
-    var h = document.documentElement.outerHTML;
-    var d = JSON.stringify(D,null,2);
-    var nh = h.replace(/\/\/ __DATA_START__[\s\S]*?\/\/ __DATA_END__/,'// __DATA_START__\nconst DEFAULTS = '+d+';\n// __DATA_END__');
-    var blob = new Blob(['<!DOCTYPE html>\n'+nh],{type:'text/html'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href=url; a.download='plan_egorov_2026.htm';
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); },1000);
-    setStatus('💾 Файл скачан (войди в Google для облака)','var(--yw)');
-  }
-}
-
 // ─── INIT ────────────────────────────────────────────────────────
 render();
-// Пробуем тихую авторизацию при загрузке
-window.addEventListener('load', function(){
-  if(typeof google !== 'undefined' && google.accounts){
-    var client = google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
-      scope: SCOPES,
-      prompt: '',
-      callback: function(resp){
-        if(resp && !resp.error && resp.access_token){
-          _token = resp.access_token;
-          id('btn-login').textContent = '✓ Drive';
-          id('btn-login').style.background = 'rgba(34,197,94,.15)';
-          id('btn-login').style.color = 'var(--gr)';
-          id('btn-login').onclick = signOut;
-          loadFromDrive();
-        }
-      }
-    });
-    client.requestAccessToken({prompt:''});
-  }
-});
 </script>
 
 
