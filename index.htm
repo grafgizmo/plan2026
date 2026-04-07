@@ -9,14 +9,14 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d0f1a;--bg2:#131621;--bg3:#1a1e2e;--bg4:#222638;--bg5:#2a2f45;
+  --bg:#161b2e;--bg2:#1e2540;--bg3:#252d4a;--bg4:#2d3655;--bg5:#354060;
   --or:#f05a23;--gr:#22c55e;--rd:#ef4444;--yw:#f59e0b;--bl:#3b82f6;
-  --t1:#e8eaf6;--t2:#8b93b8;--t3:#4a5180;
+  --t1:#f0f2ff;--t2:#a8b0d0;--t3:#6470a0;
   --bd:rgba(255,255,255,0.06);--rad:10px;
 }
 body.light{
-  --bg:#f0f2f8;--bg2:#ffffff;--bg3:#f5f6fa;--bg4:#e8eaf2;--bg5:#dde0ee;
-  --t1:#1a1e2e;--t2:#4a5180;--t3:#8b93b8;--bd:rgba(0,0,0,0.08);
+  --bg:#f1f3f7;--bg2:#ffffff;--bg3:#f8f9fb;--bg4:#eef0f5;--bg5:#e4e7ef;
+  --t1:#2b3a5c;--t2:#5a6a8e;--t3:#9aa3bc;--bd:rgba(0,0,0,0.10);
 }
 body.compact .mcbd{display:none!important}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-size:14px}
@@ -137,7 +137,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 .p27t tr:hover td{background:rgba(255,255,255,.018)}
 .p27t .pn{font-weight:500;color:var(--t2);width:28%}
 .p27t .pa{text-align:right;font-weight:600;color:var(--yw);white-space:nowrap;width:130px}
-.p27t .pno{font-size:11px;color:var(--t3)}
+.p27t .pno{font-size:11px;color:var(--t2)}
 .p27t .pd{width:22px;text-align:center}
 .p27t .pd button{opacity:0;transition:opacity .15s}
 .p27t tr:hover .pd button{opacity:1}
@@ -206,7 +206,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
   <div class="li"><div class="ld" style="background:var(--yw)"></div>Пайплайн</div>
   <div class="li"><div class="ld" style="background:var(--or)"></div>Профит → переходит в следующий месяц</div>
   <div class="li"><div class="ld" style="background:var(--rd)"></div>Недовыполнение</div>
-  <div class="lh">✏ Клик по имени/сумме — редактировать &nbsp;|&nbsp; ☰ Перетащить — сменить месяц &nbsp;|&nbsp; ☑ Чекбокс пайплайна — включить/исключить из расчёта</div>
+  
 </div>
 </div><!-- /top -->
 
@@ -791,13 +791,8 @@ function renderMonths(C){
         var realIdx = srcArr.indexOf(DRAG.deal);
         if(realIdx === -1){ DRAG=null; return; }
         var moved = srcArr.splice(realIdx, 1)[0];
-        if(tmi === DRAG.mi){
-          var newType = DRAG.type === 'confirmed' ? 'pipeline' : 'confirmed';
-          if(newType === 'confirmed') delete moved.active;
-          D.months[tmi][newType].push(moved);
-        } else {
-          D.months[tmi][DRAG.type].push(moved);
-        }
+        if(tmi === DRAG.mi){ DRAG=null; return; }
+        D.months[tmi][DRAG.type].push(moved);
       }
       DRAG = null;
       render();
@@ -831,9 +826,14 @@ function dealRow(d, mi, type, di){
   var chk = type==='pipeline'
     ? '<input type="checkbox" '+(inactive?'':'checked')+' title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--t3);opacity:.45;flex-shrink:0" onclick="togglePipe(event,'+mi+','+di+')">'
     : '';
+  // Стрелка смены типа: ↓ у подтверждённых, ↑ у пайплайна
+  var arrow = type==='confirmed'
+    ? '<button onclick="moveType(event,'+mi+',\'confirmed\','+di+')" title="Перевести в пайплайн" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:15px;font-weight:700;padding:2px 6px;opacity:.55;transition:opacity .15s;line-height:1" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">↓</button>'
+    : '<button onclick="moveType(event,'+mi+',\'pipeline\','+di+')" title="Перевести в подтверждённые" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:15px;font-weight:700;padding:2px 6px;opacity:.55;transition:opacity .15s;line-height:1" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">↑</button>';
   return '<tr class="dr" draggable="true" data-mi="'+mi+'" data-type="'+type+'" data-di="'+di+'" ondragstart="onDS(event)" ondragend="onDE(event)">'+
     '<td class="nc"><span style="display:flex;align-items:center;gap:4px">'+chk+'<span class="ec" style="'+fade+'" onclick="editM(event,\'name\','+mi+',\''+type+'\','+di+')">'+H(d.name)+'</span></span></td>'+
     '<td class="ac '+ac+'" style="'+fade+'"><span class="ec" onclick="editM(event,\'amt\','+mi+',\''+type+'\','+di+')">'+R(d.amt)+'</span></td>'+
+    '<td style="width:20px;text-align:center;padding:0">'+arrow+'</td>'+
     '<td class="dc"><button class="dbtn" onclick="delDeal('+mi+',\''+type+'\','+di+')">✕</button></td>'+
   '</tr>';
 }
@@ -902,6 +902,16 @@ function togglePipe(e, mi, di){
 }
 
 // ─── УДАЛЕНИЕ ────────────────────────────────────────────────────
+function moveType(e, mi, type, di){
+  e.stopPropagation();
+  var arr = D.months[mi][type];
+  var deal = arr.splice(di, 1)[0];
+  if(!deal) return;
+  var newType = type === 'confirmed' ? 'pipeline' : 'confirmed';
+  if(newType === 'confirmed') delete deal.active;
+  D.months[mi][newType].push(deal);
+  render();
+}
 function delDeal(mi, type, di){
   var name = (D.months[mi][type][di]||{}).name||'сделку';
   if(!confirm('Удалить "'+name+'"?')) return;
@@ -938,13 +948,16 @@ function renderP27(){
   var total = 0;
 
   D.p27.forEach(function(p, pi){
-    total += (+p.amt||0);
+    var inactive = p.active === false;
+    total += inactive ? 0 : (+p.amt||0);
     var tr = document.createElement('tr');
     tr.className = 'dr';
     tr.draggable = true;
+    var fade = inactive ? 'opacity:.4;text-decoration:line-through' : '';
+    var chk = '<input type="checkbox" '+(inactive?'':'checked')+' title="Учитывать в расчёте" style="margin-right:5px;cursor:pointer;accent-color:var(--t3);opacity:.45;flex-shrink:0" onclick="toggleP27(event,'+pi+')">';
     tr.innerHTML =
-      '<td class="pn"><span class="ec" onclick="editP27(event,\'name\','+pi+')">'+H(p.name)+'</span></td>'+
-      '<td class="pa"><span class="ec" onclick="editP27(event,\'amt\','+pi+')">'+R(p.amt)+'</span></td>'+
+      '<td class="pn" style="'+fade+'">'+chk+'<span class="ec" onclick="editP27(event,\'name\','+pi+')">'+H(p.name)+'</span></td>'+
+      '<td class="pa" style="'+fade+'"><span class="ec" onclick="editP27(event,\'amt\','+pi+')">'+R(p.amt)+'</span></td>'+
       '<td class="pno"><span class="ec" onclick="editP27(event,\'note\','+pi+')">'+H(p.note||'—')+'</span></td>'+
       '<td class="pd"><button class="dbtn" onclick="delP27('+pi+')">✕</button></td>';
 
@@ -1014,6 +1027,13 @@ function addP27(){
   }, 50);
 }
 
+function toggleP27(e, pi){
+  e.stopPropagation();
+  var p = D.p27[pi];
+  if(!p) return;
+  p.active = (p.active === false) ? true : false;
+  renderP27();
+}
 function delP27(pi){
   if(!confirm('Удалить?')) return;
   D.p27.splice(pi,1); renderP27();
@@ -1087,7 +1107,7 @@ function toast(msg){
 
 // ─── GOOGLE DRIVE ───────────────────────────────────────────────
 var CLIENT_ID = '550657527137-tgoarmen16be2l0ms8diilgdllptejvb.apps.googleusercontent.com';
-var SCOPES = 'https://www.googleapis.com/auth/drive.appdata';
+var SCOPES = 'https://www.googleapis.com/auth/drive.file';
 var FILE_NAME = 'plan2026_egorov.json';
 var _fileId = null;
 var _token = null;
@@ -1130,7 +1150,9 @@ function signOut(){
 
 function loadFromDrive(){
   // Ищем файл в AppData
-  fetch('https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name%3D%22'+FILE_NAME+'%22&fields=files(id,name)',{
+  // Восстанавливаем fileId если он был сохранён
+  try{ var savedId=localStorage.getItem('plan26_fileId'); if(savedId && !_fileId) _fileId=savedId; }catch(e){}
+  fetch('https://www.googleapis.com/drive/v3/files?q=name%3D%22'+FILE_NAME+'%22+and+trashed%3Dfalse&fields=files(id,name)',{
     headers: {'Authorization': 'Bearer '+_token}
   })
   .then(function(r){ return r.json(); })
@@ -1161,7 +1183,7 @@ function saveToDrive(){
   if(!_token){ setStatus('⚠ Нужно войти через Google','var(--rd)'); return; }
   setStatus('⏳ Сохраняю в Drive...','var(--t3)');
   var body = JSON.stringify(D);
-  var meta = JSON.stringify({name: FILE_NAME, parents: ['appDataFolder']});
+  var meta = JSON.stringify({name: FILE_NAME});
 
   if(_fileId){
     // Обновляем существующий файл
@@ -1186,6 +1208,8 @@ function saveToDrive(){
       _fileId = f.id;
       setStatus('✓ Сохранено в Google Drive','var(--gr)');
       setTimeout(function(){ setStatus(''); },3000);
+      // Сохраняем fileId для публичного доступа
+      try{ localStorage.setItem('plan26_fileId', f.id); }catch(e){}
     })
     .catch(function(e){ setStatus('⚠ '+e.message,'var(--rd)'); });
   }
@@ -1307,15 +1331,15 @@ function showHelp(){
   var box=document.createElement('div');
   box.style.cssText='background:var(--bg2);border-radius:12px;border:1px solid var(--bd);padding:24px;width:480px;max-width:94vw;max-height:85vh;overflow-y:auto;color:var(--t1)';
   var items=[
-    ['✏ Редактирование','Клик по имени или сумме сделки → Enter для сохранения'],
-    ['☰ Перенос между месяцами','Перетащи строку на другую карточку месяца'],
-    ['🔄 Смена типа','Перетащи сделку на ту же карточку — переключится из подтверждённой в пайплайн и обратно'],
-    ['☑ Чекбокс','Исключить рисковую сделку из расчёта без удаления'],
-    ['% Вероятность','Поле рядом с суммой пайплайна. Влияет на карточку Пайплайн взвешенный'],
-    ['↑ Оранжевый бейдж','Профит с предыдущего месяца, уменьшает план следующего'],
-    ['⊟ Компакт','Только заголовки месяцев без деталей'],
-    ['💾 Сохранить','Записывает данные в Google Drive, доступно с любого устройства'],
-    ['🌙/🌞','Переключение тёмной/светлой темы']
+    ['✏ Редактирование','Клик по имени или сумме сделки — редактируй прямо в таблице, Enter для сохранения'],
+    ['☰ Перенос между месяцами','Перетащи строку сделки на карточку другого месяца'],
+    ['↓↑ Смена типа','Стрелка ↓ у подтверждённой сделки — перевести в пайплайн. Стрелка ↑ у пайплайна — перевести в подтверждённые'],
+    ['☑ Чекбокс пайплайна','Снять галочку — исключить рисковую сделку из расчёта не удаляя её'],
+    ['☑ Чекбокс в потенциале 2027+','Аналогично — исключить сделку из итого потенциала'],
+    ['↑ Оранжевый бейдж','Профит с предыдущего месяца — уменьшает план текущего месяца'],
+    ['⊟ Компакт','Скрывает детали, показывает только заголовки месяцев с бейджами'],
+    ['💾 Сохранить','Сохраняет данные в Google Drive — доступно с любого устройства и браузера'],
+    ['🌙/🌞','Переключение тёмной и светлой темы']
   ];
   var html2='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">'+
     '<div style="font-size:16px;font-weight:800">Как пользоваться</div>'+
