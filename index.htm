@@ -1364,6 +1364,9 @@ try{ if(localStorage.getItem('plan26_theme')==='light'){ document.body.classList
 setTimeout(function(){ initChart(); updateWeighted(); }, 100);
 // Пробуем тихую авторизацию при загрузке
 window.addEventListener('load', function(){
+  // Сначала грузим публично для всех — гости видят актуальные данные
+  loadPublicData();
+  // Тихая авторизация для владельца
   if(typeof google !== 'undefined' && google.accounts){
     var client = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
@@ -1382,8 +1385,7 @@ window.addEventListener('load', function(){
     });
     client.requestAccessToken({prompt:''});
   }
-});
-</script>
+});</script>
 
 
 </body></html>
