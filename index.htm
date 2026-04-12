@@ -203,7 +203,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);font-si
 <div class="leg">
   <div class="li"><div class="ld" style="background:var(--gr)"></div>Подтверждённые</div>
   <div class="li"><div class="ld" style="background:var(--yw)"></div>Пайплайн</div>
-  <div class="li"><div class="ld" style="background:var(--or)"></div>Профит → переходит в следующий месяц</div>
+  <div class="li"><div class="ld" style="background:rgba(255,214,0,.9)"></div>Перенос с пред. месяца (в графике)</div>
   <div class="li"><div class="ld" style="background:var(--rd)"></div>Недовыполнение</div>
   
 </div>
@@ -1254,7 +1254,7 @@ function initChart(){
   var isDark=!document.body.classList.contains('light');
   var dpr=window.devicePixelRatio||1;
   var W=canvas.parentElement.clientWidth-32;
-  var H=175;
+  var H=190;
   canvas.style.width=W+'px'; canvas.style.height=H+'px';
   canvas.width=W*dpr; canvas.height=H*dpr;
   var ctx=canvas.getContext('2d');
@@ -1262,80 +1262,116 @@ function initChart(){
   ctx.clearRect(0,0,W,H);
   var n=C.length;
   var tc=isDark?'#a8b0d0':'#4a5180';
-  // Отступ снизу для подписей месяцев, сверху для % меток
-  var padL=8,padR=8,padT=22,padB=22;
+  var padL=8,padR=8,padT=22,padB=42;
   var cW=W-padL-padR,cH=H-padT-padB;
-  var bW=Math.floor(cW/n*0.65);
+  var bW=Math.floor(cW/n*0.55);
   var gap=cW/n;
 
-  // Максимум — максимальный % выполнения среди всех месяцев (минимум 100%)
+  // Максимум шкалы
   var maxPct=1;
   C.forEach(function(m){
-    var p=(m.sc+m.sp+m.tc)/(m.plan||1); // с учётом переноса для шкалы
+    var p=(m.sc+m.sp+m.tc)/(m.plan||1);
     if(p>maxPct) maxPct=p;
   });
-  maxPct=Math.ceil(maxPct*10)/10; // округляем до 0.1
+  maxPct=Math.ceil(maxPct*10)/10;
 
+  // Квартальные фоновые зоны убраны
+
+  // Линия 100%
+  var y100=padT+cH-Math.round(cH*(1/maxPct));
+  ctx.strokeStyle=isDark?'rgba(34,197,94,.35)':'rgba(34,197,94,.4)';
+  ctx.lineWidth=1; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(padL,y100); ctx.lineTo(W-padR,y100); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Столбики
   C.forEach(function(m,i){
-    var pct=(m.sc+m.sp)/(m.plan||1);        // % без переноса (для цвета и метки)
-    var pctFull=(m.sc+m.sp+m.tc)/(m.plan||1); // % с переносом (для высоты)
+    var pct=(m.sc+m.sp)/(m.plan||1);
     var done=(m.sc+m.sp)>=m.plan;
-    // Высота пропорциональна полному % относительно максимума
-    var barH=Math.max(4,Math.round(cH*(Math.min(pct,maxPct)/maxPct)));
-    var carryPct=Math.min(pctFull-pct, maxPct-pct);
-    var carryH=carryPct>0?Math.round(cH*(carryPct/maxPct)):0;
+    var barH=Math.max(4,Math.round(cH*Math.min(pct,maxPct)/maxPct));
+    var carryPct=Math.min(m.tc/(m.plan||1), maxPct-pct);
+    var carryH=carryPct>0?Math.round(cH*carryPct/maxPct):0;
     var x=padL+gap*i+gap/2-bW/2;
     var y=padT+cH-barH;
-    var topY=y; // будет обновлён если есть перенос
+    var topY=y;
 
-    // Фон (план = 100% высоты)
-    var planH=Math.round(cH*(1/maxPct));
+    // Фон
     ctx.fillStyle=isDark?'rgba(255,255,255,.06)':'rgba(0,0,0,.06)';
-    if(ctx.roundRect){ctx.beginPath();ctx.roundRect(x,padT+cH-planH,bW,planH,4);ctx.fill();}
-    else{ctx.fillRect(x,padT+cH-planH,bW,planH);}
+    if(ctx.roundRect){ctx.beginPath();ctx.roundRect(x,padT,bW,cH,3);ctx.fill();}
+    else{ctx.fillRect(x,padT,bW,cH);}
 
-    // Факт (зелёный/красный)
+    // Факт
     ctx.fillStyle=done?'rgba(34,197,94,.85)':'rgba(239,68,68,.75)';
-    if(ctx.roundRect){ctx.beginPath();ctx.roundRect(x,y,bW,barH,[0,0,4,4]);ctx.fill();}
+    if(ctx.roundRect){ctx.beginPath();ctx.roundRect(x,y,bW,barH,[0,0,3,3]);ctx.fill();}
     else{ctx.fillRect(x,y,bW,barH);}
 
-    // Перенос (цвет пайплайна — жёлтый, сверху)
+    // Перенос (жёлтый)
     if(carryH>0){
-      var gap2=2; // зазор между столбиком и переносом
+      var gap2=2;
       var cy=Math.max(padT,y-carryH-gap2);
       var ch=y-cy-gap2;
-      topY=cy; // % метка будет над переносом
       if(ch>0){
         ctx.fillStyle='rgba(255,214,0,.85)';
-        if(ctx.roundRect){ctx.beginPath();ctx.roundRect(x,cy,bW,ch,[4,4,0,0]);ctx.fill();}
+        if(ctx.roundRect){ctx.beginPath();ctx.roundRect(x,cy,bW,ch,[3,3,0,0]);ctx.fill();}
         else{ctx.fillRect(x,cy,bW,ch);}
+        topY=cy;
       }
     }
 
-    // % метка — фиксированно над столбиком в зоне padT
-    var pctLabel=Math.round(pct*100)+'%';
+    // % метка над столбиком
     ctx.fillStyle=done?'#4ade80':'#f87171';
     ctx.font='bold 11px Inter,sans-serif'; ctx.textAlign='center';
     var cx=padL+gap*i+gap/2;
-    ctx.fillText(pctLabel, cx, topY-5);
+    ctx.fillText(Math.round(pct*100)+'%', cx, topY-5);
 
-    // Подпись месяца внизу
+    // Название месяца
     ctx.fillStyle=tc; ctx.font='10px Inter,sans-serif';
-    ctx.fillText(m.name.substring(0,3), cx, H-6);
+    ctx.fillText(m.name.substring(0,3), cx, H-padB+14);
   });
 
-  // Линия 100% плана
-  var line100Y=padT+cH-Math.round(cH*(1/maxPct));
-  ctx.strokeStyle='rgba(59,130,246,.4)'; ctx.lineWidth=1; ctx.setLineDash([4,3]);
-  ctx.beginPath(); ctx.moveTo(padL,line100Y); ctx.lineTo(W-padR,line100Y); ctx.stroke();
-  ctx.setLineDash([]);
+  // Квартальные разделители и итоги
+  for(var qi=0;qi<4;qi++){
+    var x0=padL+gap*qi*3;
+    var x1=padL+gap*(qi*3+3);
+    var xc=(x0+x1)/2;
+
+    // Разделитель
+    if(qi>0){
+      ctx.strokeStyle=isDark?'rgba(255,255,255,.35)':'rgba(0,0,0,.25)';
+      ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x0,padT-2); ctx.lineTo(x0,H-padB+30); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // Считаем % квартала
+    var qSc=0, qSp=0, qPlan=0;
+    for(var mi=qi*3;mi<qi*3+3&&mi<C.length;mi++){
+      qSc+=C[mi].sc; qSp+=C[mi].sp; qPlan+=C[mi].plan;
+    }
+    var qPct=qPlan>0?Math.round((qSc+qSp)/qPlan*100):0;
+    var qDone=qPct>=100;
+
+    // Бейдж квартала
+    var bw=46, bh=16;
+    var bx=xc-bw/2, by=H-padB+30;
+    ctx.fillStyle=qDone
+      ?(isDark?'rgba(34,197,94,.2)':'rgba(34,197,94,.15)')
+      :(isDark?'rgba(239,68,68,.2)':'rgba(239,68,68,.12)');
+    ctx.beginPath();
+    ctx.roundRect?ctx.roundRect(bx,by,bw,bh,4):ctx.rect(bx,by,bw,bh);
+    ctx.fill();
+
+    ctx.fillStyle=qDone?'#4ade80':'#f87171';
+    ctx.font='bold 12px Inter,sans-serif'; ctx.textAlign='center';
+    ctx.fillText('Q'+(qi+1)+' '+qPct+'%', xc, by+12);
+  }
 
   // Легенда
-  var lx=padL+4,ly=10;
-  var items=[['▬ 100% план','rgba(59,130,246,.6)'],['■ Факт','rgba(34,197,94,.9)'],['■ Перенос','rgba(255,214,0,.9)']];
-  items.forEach(function(l){
-    ctx.fillStyle=l[1]; ctx.font='9px Inter,sans-serif'; ctx.textAlign='left';
-    ctx.fillText(l[0],lx,ly); lx+=ctx.measureText(l[0]).width+12;
+  var lx=padL+4, ly=10;
+  [['выполнено','rgba(34,197,94,.85)'],['не выполнено','rgba(239,68,68,.75)'],['перенос','rgba(255,214,0,.85)']].forEach(function(l){
+    ctx.fillStyle=l[1]; ctx.fillRect(lx,ly-7,10,8);
+    ctx.fillStyle=tc; ctx.font='9px Inter,sans-serif'; ctx.textAlign='left';
+    ctx.fillText(l[0],lx+13,ly); lx+=ctx.measureText(l[0]).width+26;
   });
 }
 function toggleChart(){
